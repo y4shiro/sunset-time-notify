@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
 type Props = {
-  children: ReactNode;
+  children: ReactElement;
 };
 
 const Layout: React.VFC<Props> = ({ children }) => {
