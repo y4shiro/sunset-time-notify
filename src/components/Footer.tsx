@@ -1,7 +1,31 @@
 import React, { VFC } from 'react';
 
 const Footer: VFC = () => {
-  return <div>Footer</div>;
+  return (
+    <footer className='p-4 bg-sky-700 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6'>
+      <span className='text-sm text-gray-500 sm:text-center dark:text-gray-300'>
+        © 2022 y4shiro
+      </span>
+
+      <ul className='flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-300 sm:mt-0'>
+        <li>
+          <a href='#' className='mr-4 hover:underline md:mr-6'>
+            About
+          </a>
+        </li>
+        <li>
+          <a href='#' className='mr-4 hover:underline md:mr-6'>
+            Test
+          </a>
+        </li>
+        <li>
+          <a href='#' className='hover:underline'>
+            Foobar
+          </a>
+        </li>
+      </ul>
+    </footer>
+  );
 };
 
 export default Footer;
