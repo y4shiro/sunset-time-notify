@@ -1,10 +1,13 @@
 import type { NextPage } from 'next';
-import MainContent from '../components/MainContent';
+
+import Map from '../components/Map';
+import SunsetInfo from '../components/SunsetInfo';
 
 const Home: NextPage = () => {
   return (
-    <div className='h-96 flex items-center justify-center'>
-      <MainContent />
+    <div className='flex'>
+      <Map />
+      <SunsetInfo />
     </div>
   );
 };
