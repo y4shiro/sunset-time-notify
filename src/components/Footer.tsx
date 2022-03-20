@@ -2,7 +2,7 @@ import React, { VFC } from 'react';
 
 const Footer: VFC = () => {
   return (
-    <footer className='p-4 bg-sky-700 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6'>
+    <footer className='flex items-center justify-between p-6 bg-sky-700 rounded-lg shadow'>
       <span className='text-sm text-gray-500 sm:text-center dark:text-gray-300'>
         © 2022 y4shiro
       </span>
