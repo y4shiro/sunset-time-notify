@@ -1,15 +1,9 @@
 import type { NextPage } from 'next';
 
-import Map from '../components/Map';
-import SunsetInfo from '../components/SunsetInfo';
+import MainContent from '../components/MainContent';
 
 const Home: NextPage = () => {
-  return (
-    <div className='flex'>
-      <Map />
-      <SunsetInfo />
-    </div>
-  );
+  return <MainContent />;
 };
 
 export default Home;
