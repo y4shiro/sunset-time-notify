@@ -4,7 +4,7 @@ const SunsetInfo: VFC = () => {
   return (
     <div className='w-full bg-red-100'>
       <div className='m-6 p-6 max-h-full bg-white rounded-lg border border-gray-200 shadow-md'>
-        <h5>SunsetInfo カード</h5>
+        <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-800'>SunsetInfo カード</h5>
         <form>
           <div className='my-6'>
             <label htmlFor='countries' className='block mb-2 text-sm font-medium text-gray-900'>
