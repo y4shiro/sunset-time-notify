@@ -1,11 +1,11 @@
 import { VFC } from 'react';
 import Image from 'next/image';
 
-import MapImg from '../../public/Map.png';
+import { Box, css } from '@chakra-ui/react';
 
 const Map: VFC = () => {
   return (
-    <div className='w-full bg-green-100'>
+    <Box w='100%' bg='green.100'>
       <Image
         src='/Map.png'
         width='100'
@@ -14,7 +14,7 @@ const Map: VFC = () => {
         objectFit='contain'
         alt='Map'
       />
-    </div>
+    </Box>
   );
 };
 
