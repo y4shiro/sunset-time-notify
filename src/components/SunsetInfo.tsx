@@ -4,7 +4,7 @@ import { Box, Button, FormControl, FormLabel, Heading, Input, Select } from '@ch
 const SunsetInfo: VFC = () => {
   return (
     <div className='w-full bg-red-100'>
-      <div className='m-6 p-6 max-h-full bg-white rounded-lg border border-gray-200 shadow-md'>
+      <Box m={4} p={4} borderRadius='lg' shadow='md' bgColor='white'>
         <Heading size='lg'>SunsetInfo カード</Heading>
         <FormControl>
           <Box my={4}>
@@ -34,7 +34,7 @@ const SunsetInfo: VFC = () => {
         <Button colorScheme={'blue'} type='submit'>
           計算開始
         </Button>
-      </div>
+      </Box>
     </div>
   );
 };
