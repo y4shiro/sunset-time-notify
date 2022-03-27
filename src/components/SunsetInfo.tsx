@@ -3,7 +3,7 @@ import { Box, Button, FormControl, FormLabel, Heading, Input, Select } from '@ch
 
 const SunsetInfo: VFC = () => {
   return (
-    <div className='w-full bg-red-100'>
+    <Box w='full' bgColor='red.100'>
       <Box m={4} p={4} borderRadius='lg' shadow='md' bgColor='white'>
         <Heading size='lg'>SunsetInfo カード</Heading>
         <FormControl>
@@ -31,11 +31,11 @@ const SunsetInfo: VFC = () => {
           </Box>
         </FormControl>
 
-        <Button colorScheme={'blue'} type='submit'>
+        <Button colorScheme='blue' type='submit'>
           計算開始
         </Button>
       </Box>
-    </div>
+    </Box>
   );
 };
 
