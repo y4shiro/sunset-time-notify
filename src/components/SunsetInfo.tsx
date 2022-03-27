@@ -1,11 +1,11 @@
 import { VFC } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Select } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Heading, Input, Select } from '@chakra-ui/react';
 
 const SunsetInfo: VFC = () => {
   return (
     <div className='w-full bg-red-100'>
       <div className='m-6 p-6 max-h-full bg-white rounded-lg border border-gray-200 shadow-md'>
-        <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-800'>SunsetInfo カード</h5>
+        <Heading size='lg'>SunsetInfo カード</Heading>
         <FormControl>
           <Box my={4}>
             <FormLabel htmlFor='countries'>国名を選んでください</FormLabel>
