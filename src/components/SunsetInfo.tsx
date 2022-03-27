@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Box, FormControl, FormLabel, Input, Select } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, Select } from '@chakra-ui/react';
 
 const SunsetInfo: VFC = () => {
   return (
@@ -31,12 +31,9 @@ const SunsetInfo: VFC = () => {
           </Box>
         </FormControl>
 
-        <button
-          type='button'
-          className='p-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg'
-        >
+        <Button colorScheme={'blue'} type='submit'>
           計算開始
-        </button>
+        </Button>
       </div>
     </div>
   );
