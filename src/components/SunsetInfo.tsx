@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Box, FormControl, FormLabel, Select } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, Select } from '@chakra-ui/react';
 
 const SunsetInfo: VFC = () => {
   return (
@@ -17,39 +17,18 @@ const SunsetInfo: VFC = () => {
             </Select>
           </Box>
 
-          <div className='mb-6'>
-            <label htmlFor='text1' className='block mb-2 text-sm font-medium text-gray-900'>
-              フォーム1
-            </label>
-            <input
-              id='text1'
-              type='text'
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2'
-              placeholder='フォーム1'
-            />
-          </div>
-          <div className='mb-6'>
-            <label htmlFor='text1' className='block mb-2 text-sm font-medium text-gray-900'>
-              フォーム2
-            </label>
-            <input
-              id='text2'
-              type='text'
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2'
-              placeholder='フォーム2'
-            />
-          </div>
-          <div className='mb-6'>
-            <label htmlFor='text1' className='block mb-2 text-sm font-medium text-gray-900'>
-              フォーム3
-            </label>
-            <input
-              id='text2'
-              type='text'
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2'
-              placeholder='フォーム3'
-            />
-          </div>
+          <Box my={4}>
+            <FormLabel htmlFor='text1'>フォーム1</FormLabel>
+            <Input id='text1' type='text' placeholder='フォーム1' />
+          </Box>
+          <Box my={4}>
+            <FormLabel htmlFor='text2'>フォーム2</FormLabel>
+            <Input id='text2' type='text' placeholder='フォーム2' />
+          </Box>
+          <Box my={4}>
+            <FormLabel htmlFor='text3'>フォーム3</FormLabel>
+            <Input id='text3' type='text' placeholder='フォーム3' />
+          </Box>
         </FormControl>
 
         <button
