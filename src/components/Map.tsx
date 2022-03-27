@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import Image from 'next/image';
 
-import { Box, css } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 const Map: VFC = () => {
   return (

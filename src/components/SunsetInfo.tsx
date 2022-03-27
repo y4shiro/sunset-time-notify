@@ -1,25 +1,22 @@
 import { VFC } from 'react';
+import { Box, FormControl, FormLabel, Select } from '@chakra-ui/react';
 
 const SunsetInfo: VFC = () => {
   return (
     <div className='w-full bg-red-100'>
       <div className='m-6 p-6 max-h-full bg-white rounded-lg border border-gray-200 shadow-md'>
         <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-800'>SunsetInfo カード</h5>
-        <form>
-          <div className='my-6'>
-            <label htmlFor='countries' className='block mb-2 text-sm font-medium text-gray-900'>
-              国を選んでください
-            </label>
-            <select
-              id='countries'
-              className='block w-full p-2 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500'
-            >
-              <option>United States</option>
-              <option>Canada</option>
-              <option>France</option>
-              <option>Germany</option>
-            </select>
-          </div>
+        <FormControl>
+          <Box my={4}>
+            <FormLabel htmlFor='countries'>国名を選んでください</FormLabel>
+            <Select id='countries'>
+              <option value='United States'>United States</option>
+              <option value='Canada'>Canada</option>
+              <option value='France'>France</option>
+              <option value='Germany'>Germany</option>
+            </Select>
+          </Box>
+
           <div className='mb-6'>
             <label htmlFor='text1' className='block mb-2 text-sm font-medium text-gray-900'>
               フォーム1
@@ -53,7 +50,7 @@ const SunsetInfo: VFC = () => {
               placeholder='フォーム3'
             />
           </div>
-        </form>
+        </FormControl>
 
         <button
           type='button'
