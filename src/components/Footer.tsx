@@ -1,30 +1,31 @@
-import React, { VFC } from 'react';
+import { VFC } from 'react';
+import NextLink from 'next/link';
+
+import { HStack, Link, Text } from '@chakra-ui/react';
 
 const Footer: VFC = () => {
   return (
-    <footer className='flex items-center justify-between p-6 bg-sky-700 rounded-lg shadow'>
-      <span className='text-sm text-gray-500 sm:text-center dark:text-gray-300'>
-        © 2022 y4shiro
-      </span>
+    <HStack
+      as={'footer'}
+      justify={'space-between'}
+      p={'6'}
+      bgColor={'blue.600'}
+      textColor={'gray.200'}
+    >
+      <Text size='sm'>© 2022 y4shiro</Text>
 
-      <ul className='flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-300 sm:mt-0'>
-        <li>
-          <a href='#' className='mr-4 hover:underline md:mr-6'>
-            About
-          </a>
-        </li>
-        <li>
-          <a href='#' className='mr-4 hover:underline md:mr-6'>
-            Test
-          </a>
-        </li>
-        <li>
-          <a href='#' className='hover:underline'>
-            Foobar
-          </a>
-        </li>
-      </ul>
-    </footer>
+      <HStack gap={'4'}>
+        <NextLink href='#' passHref>
+          <Link>About</Link>
+        </NextLink>
+        <NextLink href='#' passHref>
+          <Link>Test</Link>
+        </NextLink>
+        <NextLink href='#' passHref>
+          <Link>Foobar</Link>
+        </NextLink>
+      </HStack>
+    </HStack>
   );
 };
 
