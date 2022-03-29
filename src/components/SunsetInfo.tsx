@@ -1,11 +1,32 @@
-import { VFC } from 'react';
-import { Box, Button, FormControl, FormLabel, Heading, Input, Select } from '@chakra-ui/react';
+import { useEffect, useState, VFC } from 'react';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Select,
+  Text,
+} from '@chakra-ui/react';
+
+import { format } from 'date-fns';
 
 const SunsetInfo: VFC = () => {
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    const nowDate = format(new Date(), 'yyyy-MM-dd hh:mm:ss');
+    setDate(nowDate);
+  }, []);
+
   return (
     <Box w='full' bgColor='red.100'>
       <Box m={4} p={4} borderRadius='lg' shadow='md' bgColor='white'>
         <Heading size='lg'>SunsetInfo カード</Heading>
+
+        <Text>{date}</Text>
+
         <FormControl>
           <Box my={4}>
             <FormLabel htmlFor='countries'>国名を選んでください</FormLabel>
