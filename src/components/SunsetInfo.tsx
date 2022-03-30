@@ -16,16 +16,24 @@ const SunsetInfo: VFC = () => {
   const [date, setDate] = useState('');
 
   useEffect(() => {
-    const nowDate = format(new Date(), 'yyyy-MM-dd hh:mm:ss');
-    setDate(nowDate);
-  }, []);
+    const timeoutId = setTimeout(() => {
+      const nowDate = format(new Date(), 'yyyy-MM-dd hh:mm:ss');
+      setDate(nowDate);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [date]);
 
   return (
     <Box w='full' bgColor='red.100'>
       <Box m={4} p={4} borderRadius='lg' shadow='md' bgColor='white'>
         <Heading size='lg'>SunsetInfo カード</Heading>
 
-        <Text>{date}</Text>
+        <Box my={4} p={4} borderRadius='lg' shadow='lg'>
+          <Text>現在時刻 : {date}</Text>
+        </Box>
 
         <FormControl>
           <Box my={4}>
