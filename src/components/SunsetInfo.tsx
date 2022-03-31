@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  HStack,
   Input,
   Select,
   Text,
@@ -34,6 +35,15 @@ const SunsetInfo: VFC = () => {
         <Box my={4} p={4} borderRadius='lg' shadow='lg'>
           <Text>現在時刻 : {date}</Text>
         </Box>
+
+        <HStack justifyContent={'space-around'}>
+          <Box w={'40%'} p={4} borderRadius='lg' shadow='lg'>
+            <Text>日の出 : 06:00</Text>
+          </Box>
+          <Box w={'40%'} p={4} borderRadius='lg' shadow='lg'>
+            <Text>日の入 : 18:00</Text>
+          </Box>
+        </HStack>
 
         <FormControl>
           <Box my={4}>
