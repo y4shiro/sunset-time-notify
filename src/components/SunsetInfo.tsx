@@ -18,7 +18,7 @@ const SunsetInfo: VFC = () => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      const nowDate = format(new Date(), 'yyyy-MM-dd hh:mm:ss');
+      const nowDate = format(new Date(), 'yyyy年MM月dd日 HH:mm:ss');
       setDate(nowDate);
     }, 1000);
 
