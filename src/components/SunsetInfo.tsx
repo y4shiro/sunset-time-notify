@@ -32,12 +32,26 @@ const SunsetInfo: VFC = () => {
       <Box m={8} p={8} borderRadius='xl' shadow='lg' bgColor='gray.50'>
         <Heading size='lg'>SunsetInfo カード</Heading>
 
-        <Box my={4} p={4} borderRadius='lg' shadow='md' bgColor='white'>
+        <Box
+          my={4}
+          p={4}
+          borderRadius='lg'
+          border='1px'
+          borderColor='gray.200'
+          shadow='md'
+          bgColor='white'
+        >
           <Text fontSize='20'>現在時刻 : {date}</Text>
         </Box>
 
         <HStack justifyContent='space-around'>
-          <Box borderRadius='xl' shadow='lg' bgColor='#FFBF15'>
+          <Box
+            borderRadius='xl'
+            border='1px'
+            borderColor='orange.300'
+            shadow='lg'
+            bgColor='#FFBF15'
+          >
             <Text my={4} mx={6} textColor='white' fontSize='24' fontWeight='bold'>
               日の出 : 06:00
             </Text>
