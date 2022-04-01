@@ -32,8 +32,8 @@ const SunsetInfo: VFC = () => {
       <Box m={8} p={8} borderRadius='xl' shadow='lg' bgColor='gray.50'>
         <Heading size='lg'>SunsetInfo カード</Heading>
 
-        <Box my={4} p={4} borderRadius='lg' shadow='lg' bgColor='white'>
-          <Text>現在時刻 : {date}</Text>
+        <Box my={4} p={4} borderRadius='lg' shadow='md' bgColor='white'>
+          <Text fontSize='20'>現在時刻 : {date}</Text>
         </Box>
 
         <HStack justifyContent='space-around'>
