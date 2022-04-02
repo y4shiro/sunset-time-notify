@@ -1,20 +1,10 @@
-import { useState, useEffect, VFC } from 'react';
-import { format } from 'date-fns';
+import { VFC } from 'react';
 import { Box, Text } from '@chakra-ui/react';
+import { useCurrentTime } from '../../hooks/useCurrentTime';
 
 const CurrentTime: VFC = () => {
-  const [date, setDate] = useState('');
+  const { currentTimeStr } = useCurrentTime();
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      const nowDate = format(new Date(), 'yyyy年MM月dd日 HH:mm:ss');
-      setDate(nowDate);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [date]);
   return (
     <Box
       my={4}
@@ -25,7 +15,7 @@ const CurrentTime: VFC = () => {
       shadow='md'
       bgColor='white'
     >
-      <Text fontSize='20'>現在時刻 : {date}</Text>
+      <Text fontSize='20'>現在時刻 : {currentTimeStr}</Text>
     </Box>
   );
 };
