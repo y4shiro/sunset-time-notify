@@ -1,4 +1,4 @@
-import { useEffect, useState, VFC } from 'react';
+import { VFC } from 'react';
 import {
   Box,
   Button,
@@ -11,38 +11,14 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import { format } from 'date-fns';
+import { CurrentTime } from './CurrentTime';
 
 const SunsetInfo: VFC = () => {
-  const [date, setDate] = useState('');
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      const nowDate = format(new Date(), 'yyyy年MM月dd日 HH:mm:ss');
-      setDate(nowDate);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [date]);
-
   return (
     <Box w='full' bgColor='gray.100'>
       <Box m={8} p={8} borderRadius='xl' shadow='lg' bgColor='gray.50'>
         <Heading size='lg'>SunsetInfo カード</Heading>
-
-        <Box
-          my={4}
-          p={4}
-          borderRadius='lg'
-          border='1px'
-          borderColor='gray.200'
-          shadow='md'
-          bgColor='white'
-        >
-          <Text fontSize='20'>現在時刻 : {date}</Text>
-        </Box>
+        <CurrentTime />
 
         <HStack justifyContent='space-around'>
           <Box
