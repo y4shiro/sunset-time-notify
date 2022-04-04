@@ -2,22 +2,18 @@ import { useState, useEffect } from 'react';
 import format from 'date-fns/format';
 
 export const useCurrentTime = () => {
-  const [startTime, setStartTime] = useState(Date.now());
-  const [currentTime, setCurrentTime] = useState(Date.now());
+  const [currentTime, setCurrentTime] = useState(new Date());
   const [currentTimeString, setCurrentTimeString] = useState('');
 
-  const updateTime = (currentDate = Date.now()) => {
+  const updateTime = (currentDate: Date = new Date()) => {
     setCurrentTime(currentDate);
     setCurrentTimeString(format(currentDate, 'yyyy年MM月dd日 HH:mm:ss'));
   };
 
   useEffect(() => {
     updateTime();
-  }, []);
 
-  useEffect(() => {
     const intervalId = setInterval(() => {
-      const diff = Date.now() - startTime;
       updateTime();
     }, 1000);
 
