@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import format from 'date-fns/format';
 
 export const useCurrentTime = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [startTime, setStartTime] = useState(Date.now());
+  const [currentTime, setCurrentTime] = useState(Date.now());
   const [currentTimeString, setCurrentTimeString] = useState('');
 
-  const updateTime = () => {
-    const currentDate = new Date();
+  const updateTime = (currentDate = Date.now()) => {
     setCurrentTime(currentDate);
-    setCurrentTimeString(format(currentDate, 'yyyy年MM月dd日 hh:mm:ss'));
+    setCurrentTimeString(format(currentDate, 'yyyy年MM月dd日 HH:mm:ss'));
   };
 
   useEffect(() => {
@@ -16,14 +16,15 @@ export const useCurrentTime = () => {
   }, []);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    const intervalId = setInterval(() => {
+      const diff = Date.now() - startTime;
       updateTime();
     }, 1000);
 
     return () => {
-      clearTimeout(timeoutId);
+      clearInterval(intervalId);
     };
-  }, [currentTime]);
+  }, []);
 
   return { currentTime, currentTimeString };
 };
