@@ -1,11 +1,13 @@
 import { VFC } from 'react';
 import { Box, HStack, Text } from '@chakra-ui/react';
 
-import { useCurrentPosition } from '../../hooks/useCurrentPosition';
+type Props = {
+  lat: number;
+  lon: number;
+  locationError: string;
+};
 
-export const CurrentLocation: VFC = () => {
-  const { lat, lon, locationError } = useCurrentPosition();
-
+export const CurrentLocation: VFC<Props> = ({ lat, lon, locationError }) => {
   return (
     <Box
       my={4}
