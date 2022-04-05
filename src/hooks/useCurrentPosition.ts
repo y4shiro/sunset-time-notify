@@ -4,6 +4,7 @@ export const useCurrentPosition = () => {
   const [lat, setLat] = useState(0); // Latitude 緯度
   const [lon, setLon] = useState(0); // Longitude 経度
   const [locationError, setLocationError] = useState('');
+  const isLoading = !lat && !lon;
 
   const getCurrentPosition = () => {
     return new Promise(
@@ -34,5 +35,5 @@ export const useCurrentPosition = () => {
     }
   }, []);
 
-  return { lat, lon, locationError };
+  return { lat, lon, locationError, isLoading };
 };

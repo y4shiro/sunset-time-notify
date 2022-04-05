@@ -9,7 +9,7 @@ import { InputForm } from './InputForm';
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
 const SunsetInfo: VFC = () => {
-  const { lat, lon, locationError } = useCurrentPosition();
+  const { lat, lon, locationError, isLoading } = useCurrentPosition();
 
   return (
     <Box w='full' bgColor='gray.100'>
@@ -17,7 +17,7 @@ const SunsetInfo: VFC = () => {
         <Heading size='lg'>SunsetInfo カード</Heading>
         <CurrentLocation lat={lat} lon={lon} locationError={locationError} />
         <CurrentTime />
-        <SunTime lat={lat} lon={lon} locationError={locationError} />
+        <SunTime lat={lat} lon={lon} isLoading={isLoading} />
         <InputForm />
       </Box>
     </Box>
