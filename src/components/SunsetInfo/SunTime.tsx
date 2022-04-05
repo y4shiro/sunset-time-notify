@@ -5,10 +5,11 @@ import { getSunrise, getSunset } from 'sunrise-sunset-js';
 type Props = {
   lat: number;
   lon: number;
+  alt: number;
   isLoading: boolean;
 };
 
-export const SunTime: VFC<Props> = ({ lat, lon, isLoading }) => {
+export const SunTime: VFC<Props> = ({ lat, lon, alt, isLoading }) => {
   const sunriseTime = getSunrise(lat, lon, new Date()).toLocaleTimeString();
   const sunsetTime = getSunset(lat, lon, new Date()).toLocaleTimeString();
 
