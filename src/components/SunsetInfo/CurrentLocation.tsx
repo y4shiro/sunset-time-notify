@@ -23,8 +23,9 @@ export const CurrentLocation: VFC<Props> = ({ lat, lon, locationError }) => {
           <Text fontSize='20'>位置情報の取得に失敗しました</Text>
         ) : (
           <>
-            <Text fontSize='20'>緯度:{lat}</Text>
-            <Text fontSize='20'>経度:{lon}</Text>
+            {/** 緯度経度が 0 度の場合は取得中と表示する。レアケースだが、緯度経度 0 の地点は表示できないので、この辺厳密にする場合は取得中ステータスで管理する*/}
+            <Text fontSize='20'>緯度:{lat || '取得中'}</Text>{' '}
+            <Text fontSize='20'>経度:{lon || '取得中'}</Text>
           </>
         )}
       </HStack>
