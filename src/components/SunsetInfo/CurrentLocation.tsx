@@ -6,17 +6,32 @@ export const CurrentLocation: VFC = () => {
   const [lon, setLon] = useState(0); // Longitude 経度
   const [locationError, setLocationError] = useState('');
 
+  const getCurrentPosition = () => {
+    return new Promise(
+      (
+        resolve: (value: GeolocationPosition) => void,
+        reject: (reason: GeolocationPositionError) => void,
+      ) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      },
+    );
+  };
+
   useEffect(() => {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
+      const getPosition = async () => {
+        try {
+          const position = await getCurrentPosition();
           setLat(position.coords.latitude);
           setLon(position.coords.longitude);
-        },
-        (err) => {
-          setLocationError(err.message);
-        },
-      );
+        } catch (err) {
+          if (err instanceof GeolocationPositionError) {
+            setLocationError(err.message);
+          }
+        }
+      };
+
+      getPosition();
     }
   }, []);
 
