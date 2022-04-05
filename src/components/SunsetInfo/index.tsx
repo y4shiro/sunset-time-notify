@@ -17,7 +17,7 @@ const SunsetInfo: VFC = () => {
         <Heading size='lg'>SunsetInfo カード</Heading>
         <CurrentLocation lat={lat} lon={lon} locationError={locationError} />
         <CurrentTime />
-        <SunTime />
+        <SunTime lat={lat} lon={lon} locationError={locationError} />
         <InputForm />
       </Box>
     </Box>
