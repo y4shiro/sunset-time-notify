@@ -1,6 +1,7 @@
 import { VFC } from 'react';
 import { Box, HStack, Text } from '@chakra-ui/react';
-import { getSunrise, getSunset } from 'sunrise-sunset-js';
+
+import { useCalcSunTime } from '../../hooks/useCalcSunTime';
 
 type Props = {
   lat: number;
@@ -10,8 +11,7 @@ type Props = {
 };
 
 export const SunTime: VFC<Props> = ({ lat, lon, alt, isLoading }) => {
-  const sunriseTime = getSunrise(lat, lon, new Date()).toLocaleTimeString();
-  const sunsetTime = getSunset(lat, lon, new Date()).toLocaleTimeString();
+  const { sunriseTime, sunsetTime } = useCalcSunTime(lat, lon, alt);
 
   return (
     <HStack justifyContent='space-around'>
