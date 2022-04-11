@@ -2,22 +2,50 @@ import { cleanup } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useCurrentPosition } from './useCurrentPosition';
 
-const mockDate = new Date('2022-01-01T12:00:00');
-
-beforeEach(() => {
-  cleanup();
-});
-
-afterEach(() => {});
+const geolocationPosition = {
+  coords: {
+    accuracy: 1,
+    altitude: null,
+    altitudeAccuracy: null,
+    heading: null,
+    latitude: 1,
+    longitude: 1,
+    speed: null,
+  },
+  timestamp: 1,
+};
 
 describe('useCurrentPosition', () => {
-  test('useState の初期値がそれぞれ正しいことを確認', () => {
+  let navigatorSpy: jest.SpyInstance<Navigator, []> | undefined;
+
+  beforeEach(() => {
+    cleanup();
+    const originalNavigator = { ...navigator };
+    const originalGeolocation = { ...navigator.geolocation };
+    navigatorSpy = jest.spyOn(global, 'navigator', 'get');
+    navigatorSpy.mockImplementation(() => ({
+      ...originalNavigator,
+      geolocation: {
+        ...originalGeolocation,
+        getCurrentPosition: (successCallback) => {
+          successCallback(geolocationPosition);
+        },
+      },
+    }));
+  });
+
+  afterEach(() => {
+    navigatorSpy?.mockRestore();
+  });
+  test('useState の初期値がそれぞれ正しいことを確認', async () => {
     const { result } = renderHook(() => useCurrentPosition());
 
-    expect(result.current.lat).toBe(0);
-    expect(result.current.lon).toBe(0);
-    expect(result.current.alt).toBe(0);
-    expect(result.current.locationError).toBe('');
-    expect(result.current.isLoading).toBeTruthy();
+    await act(async () => {
+      expect(result.current.lat).toBe(0);
+      expect(result.current.lon).toBe(0);
+      expect(result.current.alt).toBe(0);
+      expect(result.current.locationError).toBe('');
+      expect(result.current.isLoading).toBeTruthy();
+    });
   });
 });
