@@ -19,7 +19,7 @@ export const useCurrentPosition = () => {
   };
 
   useEffect(() => {
-    if ('geolocation' in navigator) {
+    if (typeof navigator !== 'undefined' && 'geolocation' in navigator) {
       const getPosition = async () => {
         try {
           const position = await getCurrentPosition();
@@ -35,6 +35,8 @@ export const useCurrentPosition = () => {
       };
 
       getPosition();
+    } else {
+      setLocationError('お使いのブラウザでは位置情報を取得できません');
     }
   }, []);
 

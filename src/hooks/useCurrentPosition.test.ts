@@ -15,7 +15,7 @@ const geolocationPosition = {
   timestamp: 1,
 };
 
-describe('useCurrentPosition', () => {
+describe('navigator が存在する場合', () => {
   let navigatorSpy: jest.SpyInstance<Navigator, []> | undefined;
 
   beforeEach(() => {
@@ -46,6 +46,28 @@ describe('useCurrentPosition', () => {
       expect(result.current.alt).toBe(0);
       expect(result.current.locationError).toBe('');
       expect(result.current.isLoading).toBeTruthy();
+    });
+  });
+});
+
+describe('navigator が undefined の場合', () => {
+  let navigatorSpy: jest.SpyInstance<Navigator, []> | undefined;
+
+  beforeEach(() => {
+    cleanup();
+    navigatorSpy = jest.spyOn(global, 'navigator', 'get');
+    navigatorSpy.mockImplementation(undefined);
+  });
+
+  afterEach(() => {
+    navigatorSpy?.mockRestore();
+  });
+
+  test('locationError に "お使いのブラウザでは位置情報を取得できません" の文字列が保存されている', async () => {
+    const { result } = renderHook(() => useCurrentPosition());
+
+    await act(async () => {
+      expect(result.current.locationError).toBe('お使いのブラウザでは位置情報を取得できません');
     });
   });
 });
