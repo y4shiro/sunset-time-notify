@@ -2,6 +2,8 @@ import { cleanup } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useCurrentPosition } from './useCurrentPosition';
 
+const originalNavigator = { ...navigator };
+const originalGeolocation = { ...navigator.geolocation };
 const geolocationPosition: GeolocationPosition = {
   coords: {
     accuracy: 1,
@@ -15,13 +17,26 @@ const geolocationPosition: GeolocationPosition = {
   timestamp: 1,
 };
 
+const geolocationPositionWithoutAlt: GeolocationPosition = {
+  ...geolocationPosition,
+  coords: {
+    ...geolocationPosition.coords,
+    altitude: null,
+  },
+};
+
 describe('navigator が存在する場合', () => {
   let navigatorSpy: jest.SpyInstance<Navigator, []> | undefined;
 
   beforeEach(() => {
     cleanup();
-    const originalNavigator = { ...navigator };
-    const originalGeolocation = { ...navigator.geolocation };
+  });
+
+  afterEach(() => {
+    navigatorSpy?.mockRestore();
+  });
+
+  test('座標と高さが取得出来る場合、各値が useState に格納されている', async () => {
     navigatorSpy = jest.spyOn(global, 'navigator', 'get');
     navigatorSpy.mockImplementation(() => ({
       ...originalNavigator,
@@ -32,12 +47,7 @@ describe('navigator が存在する場合', () => {
         },
       },
     }));
-  });
 
-  afterEach(() => {
-    navigatorSpy?.mockRestore();
-  });
-  test('座標と高さが取得出来る場合、各値が useState に格納されている', async () => {
     const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition());
 
     expect(result.current.lat).toBe(0);
@@ -51,6 +61,28 @@ describe('navigator が存在する場合', () => {
     expect(result.current.lat).toBe(35.681974167122895);
     expect(result.current.lon).toBe(139.76716432155922);
     expect(result.current.alt).toBe(10);
+    expect(result.current.locationError).toBe('');
+    expect(result.current.isLoading).toBeFalsy();
+  });
+
+  test('座標のみ取得出来る場合、各値が useState に格納されている', async () => {
+    navigatorSpy = jest.spyOn(global, 'navigator', 'get');
+    navigatorSpy.mockImplementation(() => ({
+      ...originalNavigator,
+      geolocation: {
+        ...originalGeolocation,
+        getCurrentPosition: (successCallback) => {
+          successCallback(geolocationPositionWithoutAlt);
+        },
+      },
+    }));
+    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition());
+
+    await waitForNextUpdate();
+
+    expect(result.current.lat).toBe(35.681974167122895);
+    expect(result.current.lon).toBe(139.76716432155922);
+    expect(result.current.alt).toBe(0);
     expect(result.current.locationError).toBe('');
     expect(result.current.isLoading).toBeFalsy();
   });
