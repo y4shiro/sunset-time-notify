@@ -27,10 +27,9 @@ export const useCurrentPosition = () => {
           setLon(position.coords.longitude);
           if (!position.coords.altitude) return; // 高度は PC 等取得できない端末があるので、未取得の場合は早期リターン
           setAlt(position.coords.altitude);
-        } catch (err) {
-          if (err instanceof GeolocationPositionError) {
-            setLocationError(err.message);
-          }
+        } catch (e) {
+          // @ts-ignore
+          setLocationError(e.message);
         }
       };
 

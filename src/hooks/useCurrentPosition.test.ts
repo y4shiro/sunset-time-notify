@@ -25,6 +25,14 @@ const geolocationPositionWithoutAlt: GeolocationPosition = {
   },
 };
 
+const geolocationPositionError: GeolocationPositionError = {
+  code: 1,
+  message: 'hoge',
+  PERMISSION_DENIED: 1,
+  POSITION_UNAVAILABLE: 0,
+  TIMEOUT: 0,
+};
+
 describe('navigator が存在する場合', () => {
   let navigatorSpy: jest.SpyInstance<Navigator, []> | undefined;
 
@@ -85,6 +93,24 @@ describe('navigator が存在する場合', () => {
     expect(result.current.alt).toBe(0);
     expect(result.current.locationError).toBe('');
     expect(result.current.isLoading).toBeFalsy();
+  });
+
+  test('座標の取得に失敗した場合、エラー内容が useState に格納されている', async () => {
+    navigatorSpy = jest.spyOn(global, 'navigator', 'get');
+    navigatorSpy.mockImplementation(() => ({
+      ...originalNavigator,
+      geolocation: {
+        ...originalGeolocation,
+        getCurrentPosition: jest.fn().mockImplementation((success, error) => {
+          error({ code: 1, message: 'User denied Geolocation' });
+        }),
+      },
+    }));
+    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition());
+
+    await waitForNextUpdate();
+
+    expect(result.current.locationError).toBe('User denied Geolocation');
   });
 });
 
