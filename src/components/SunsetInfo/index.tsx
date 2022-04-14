@@ -4,7 +4,6 @@ import { Box, Heading } from '@chakra-ui/react';
 import { CurrentLocation } from './CurrentLocation';
 import { CurrentTime } from './CurrentTime';
 import { SunTime } from './SunTime';
-import { InputForm } from './InputForm';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
@@ -18,7 +17,6 @@ const SunsetInfo: VFC = () => {
         <CurrentLocation lat={lat} lon={lon} alt={alt} locationError={locationError} />
         <CurrentTime />
         <SunTime lat={lat} lon={lon} alt={alt} isLoading={isLoading} />
-        <InputForm />
       </Box>
     </Box>
   );
