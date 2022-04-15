@@ -8,5 +8,5 @@ import Home from '../src/pages/index';
 
 it('Should render title text', () => {
   render(<Home />);
-  expect(screen.getByText('Next.js!')).toBeInTheDocument();
+  expect(screen.getByText('SunsetInfo カード')).toBeInTheDocument();
 });
