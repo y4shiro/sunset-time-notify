@@ -1,13 +1,12 @@
 import { VFC } from 'react';
-import Image from 'next/image';
 
 import { Box } from '@chakra-ui/react';
-import GoogleMaps from './GoogleMaps';
+import GoogleMapReactComp from './GoogleMapReact';
 
 const Map: VFC = () => {
   return (
     <Box w='100%' minH='80vh'>
-      <GoogleMaps />
+      <GoogleMapReactComp />
     </Box>
   );
 };

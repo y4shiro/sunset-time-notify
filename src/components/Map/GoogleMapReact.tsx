@@ -2,7 +2,7 @@ import React, { useState, VFC } from 'react';
 import GoogleMapReact, { ClickEventValue } from 'google-map-react';
 import { Box } from '@chakra-ui/react';
 
-const GoogleMaps: VFC = () => {
+const GoogleMapReactComp: VFC = () => {
   const defaultLatLng = {
     lat: 35.7022589,
     lng: 139.7744733,
@@ -28,4 +28,4 @@ const GoogleMaps: VFC = () => {
   );
 };
 
-export default GoogleMaps;
+export default GoogleMapReactComp;
