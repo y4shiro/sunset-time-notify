@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, VFC } from 'react';
 import { Box } from '@chakra-ui/react';
 
 import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+//@ts-ignore
+import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
@@ -28,6 +30,7 @@ const MapBoxOfficial: VFC = () => {
     });
 
     map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(new MapboxLanguage());
 
     map.on('move', () => {
       console.log(map.getCenter().lng.toFixed(4));
