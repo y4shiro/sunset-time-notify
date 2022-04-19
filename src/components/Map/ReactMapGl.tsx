@@ -1,6 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import { useState, VFC } from 'react';
-import Map from 'react-map-gl';
+import Map, { NavigationControl, GeolocateControl } from 'react-map-gl';
+
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const defaultLatLng = {
   lat: 35.7022589,
@@ -22,7 +24,10 @@ const ReactMapGl: VFC = () => {
         style={{ width: '100%', height: '100%' }}
         mapStyle='mapbox://styles/mapbox/streets-v11'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_KEY}
-      ></Map>
+      >
+        <NavigationControl />
+        <GeolocateControl />
+      </Map>
     </Box>
   );
 };
