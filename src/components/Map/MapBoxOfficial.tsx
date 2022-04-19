@@ -30,6 +30,7 @@ const MapBoxOfficial: VFC = () => {
     });
 
     map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(new mapboxgl.GeolocateControl());
     map.addControl(new MapboxLanguage());
 
     map.on('move', () => {
