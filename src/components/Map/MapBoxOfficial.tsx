@@ -26,6 +26,9 @@ const MapBoxOfficial: VFC = () => {
       center: [lng, lat],
       zoom: 12,
     });
+
+    map.addControl(new mapboxgl.NavigationControl());
+
     map.on('move', () => {
       console.log(map.getCenter().lng.toFixed(4));
       setLng(map.getCenter().lng);
