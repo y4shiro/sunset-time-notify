@@ -14,22 +14,46 @@ const defaultLatLng = {
 const MapBoxOfficial: VFC = () => {
   const [mapInstance, setMapInstance] = useState<mapboxgl.Map>();
   const mapContainer = useRef<HTMLDivElement | null>(null);
+  const [lng, setLng] = useState(defaultLatLng.lng);
+  const [lat, setLat] = useState(defaultLatLng.lat);
 
   useEffect(() => {
     if (!mapContainer.current) return;
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      // style: mapStyle,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [defaultLatLng.lng, defaultLatLng.lat],
+      center: [lng, lat],
       zoom: 12,
+    });
+    map.on('move', () => {
+      console.log(map.getCenter().lng.toFixed(4));
+      setLng(map.getCenter().lng);
+      setLat(map.getCenter().lat);
     });
 
     setMapInstance(map);
   }, []);
 
-  return <Box w='100%' h='100%' ref={mapContainer} />;
+  return (
+    <>
+      <Box
+        backgroundColor='rgba(35,55,75,0.8)'
+        color='white'
+        fontFamily='monospace'
+        fontSize='16'
+        px='4'
+        py='2'
+        m='2'
+        borderRadius='8'
+        position='absolute'
+        zIndex='1'
+      >
+        緯度: {lat.toFixed(4)} | 経度: {lng.toFixed(4)}
+      </Box>
+      <Box w='100%' h='100%' ref={mapContainer} />
+    </>
+  );
 };
 
 export default MapBoxOfficial;
