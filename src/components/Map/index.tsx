@@ -5,6 +5,7 @@ import GoogleMapReactComp from './GoogleMapReact';
 import ReactGoogleMapsAPI from './ReactGoogleMapsAPI';
 import MapBoxOfficial from './MapBoxOfficial';
 import ReactMapGl from './ReactMapGl';
+import ReactLeaflet from './ReactLeaflet';
 
 const Map: VFC = () => {
   return (
@@ -12,7 +13,8 @@ const Map: VFC = () => {
       {/* <GoogleMapReactComp /> */}
       {/* <ReactGoogleMapsAPI /> */}
       {/* <MapBoxOfficial /> */}
-      <ReactMapGl />
+      {/* <ReactMapGl /> */}
+      <ReactLeaflet />
     </Box>
   );
 };
