@@ -5,7 +5,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
-  height: '100%',
+  height: '80vh',
 };
 
 const defaultLatLng = {
@@ -36,7 +36,7 @@ const ReactGoogleMapsAPI: VFC = () => {
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={defaultLatLng}
+          center={{ lat: 35, lng: 139 }}
           zoom={10}
           onLoad={onLoad}
           onUnmount={onUnmount}

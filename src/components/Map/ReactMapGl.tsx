@@ -18,7 +18,7 @@ const ReactMapGl: VFC = () => {
   const [isMoving, setIsMoving] = useState(false);
 
   return (
-    <Box w='100%' h='100%'>
+    <Box w='100%' h='80vh'>
       <Box
         backgroundColor='rgba(35,55,75,0.8)'
         color='white'

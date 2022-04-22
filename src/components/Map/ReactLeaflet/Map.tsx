@@ -16,7 +16,7 @@ const Map: VFC = () => {
       <MapContainer
         center={[defaultLatLng.lat, defaultLatLng.lng]}
         zoom={13}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '80vh' }}
         whenCreated={setMap}
       >
         <TileLayer
