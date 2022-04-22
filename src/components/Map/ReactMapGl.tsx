@@ -1,7 +1,8 @@
-import { Box } from '@chakra-ui/react';
 import { useState, VFC } from 'react';
-import Map, { NavigationControl, GeolocateControl } from 'react-map-gl';
+import { Box } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
 
+import Map, { NavigationControl, GeolocateControl, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const defaultLatLng = {
@@ -18,7 +19,7 @@ const ReactMapGl: VFC = () => {
   const [isMoving, setIsMoving] = useState(false);
 
   return (
-    <Box w='100%' h='80vh'>
+    <Box w='100%' h='100%'>
       <Box
         backgroundColor='rgba(35,55,75,0.8)'
         color='white'
@@ -43,8 +44,20 @@ const ReactMapGl: VFC = () => {
         mapStyle='mapbox://styles/y4shiro/cl279tgti00jb15qjk6klkzrh'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_KEY}
       >
+        <Marker longitude={139.7} latitude={35.7} color='#000000' />
+        <Marker longitude={139.65} latitude={35.65} color='red' />
+        <Marker longitude={139.6} latitude={35.6} />
         <NavigationControl />
         <GeolocateControl />
+        <AddIcon
+          w={10}
+          h={10}
+          color={'red'}
+          position='absolute'
+          inset='0'
+          margin='auto'
+          pointerEvents='none'
+        />
       </Map>
     </Box>
   );
