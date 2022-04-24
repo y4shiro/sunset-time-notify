@@ -5,17 +5,11 @@ import { AddIcon } from '@chakra-ui/icons';
 import Map, { NavigationControl, GeolocateControl, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const defaultLatLng = {
-  lat: 35.7022589,
-  lng: 139.7744733,
-};
+import { useRecoilState } from 'recoil';
+import { currentPositionState } from '../../stores/currentPositionState';
 
 const ReactMapGl: VFC = () => {
-  const [viewState, setViewState] = useState({
-    longitude: defaultLatLng.lng,
-    latitude: defaultLatLng.lat,
-    zoom: 12,
-  });
+  const [currentPosition, setCurrentPosition] = useRecoilState(currentPositionState);
   const [isMoving, setIsMoving] = useState(false);
 
   return (
@@ -32,12 +26,13 @@ const ReactMapGl: VFC = () => {
         position='absolute'
         zIndex='1'
       >
-        緯度: {viewState.latitude.toFixed(4)} | 経度: {viewState.longitude.toFixed(4)} | 移動中:
+        緯度: {currentPosition.latitude.toFixed(4)} | 経度: {currentPosition.longitude.toFixed(4)} |
+        移動中:
         {`${isMoving}`}
       </Box>
       <Map
-        {...viewState}
-        onMove={(e) => setViewState(e.viewState)}
+        {...currentPosition}
+        onMove={(e) => setCurrentPosition(e.viewState)}
         onMoveStart={(e) => setIsMoving(true)}
         onMoveEnd={(e) => setIsMoving(false)}
         style={{ width: '100%', height: '100%' }}
