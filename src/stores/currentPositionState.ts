@@ -7,6 +7,8 @@ type CurrentPosition = {
   zoom: number;
 };
 
+type IsMovingMap = boolean;
+
 export const currentPositionState = atom<CurrentPosition>({
   key: RecoilAtomKeys.CURRENT_POSITION_STATE,
   default: {
@@ -14,4 +16,9 @@ export const currentPositionState = atom<CurrentPosition>({
     longitude: 139.7744733,
     zoom: 12,
   },
+});
+
+export const isMovingMapState = atom<IsMovingMap>({
+  key: RecoilAtomKeys.IS_MOVING_MAP_STATE,
+  default: false,
 });

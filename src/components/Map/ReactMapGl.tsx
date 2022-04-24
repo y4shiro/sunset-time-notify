@@ -1,4 +1,4 @@
-import { useState, VFC } from 'react';
+import { VFC } from 'react';
 import { Box } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
@@ -6,11 +6,11 @@ import Map, { NavigationControl, GeolocateControl, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { useRecoilState } from 'recoil';
-import { currentPositionState } from '../../stores/currentPositionState';
+import { currentPositionState, isMovingMapState } from '../../stores/currentPositionState';
 
 const ReactMapGl: VFC = () => {
   const [currentPosition, setCurrentPosition] = useRecoilState(currentPositionState);
-  const [isMoving, setIsMoving] = useState(false);
+  const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
 
   return (
     <Box w='100%' h='100%'>
@@ -28,13 +28,13 @@ const ReactMapGl: VFC = () => {
       >
         緯度: {currentPosition.latitude.toFixed(4)} | 経度: {currentPosition.longitude.toFixed(4)} |
         移動中:
-        {`${isMoving}`}
+        {`${isMovingMap}`}
       </Box>
       <Map
         {...currentPosition}
         onMove={(e) => setCurrentPosition(e.viewState)}
-        onMoveStart={(e) => setIsMoving(true)}
-        onMoveEnd={(e) => setIsMoving(false)}
+        onMoveStart={(e) => setIsMovingMap(true)}
+        onMoveEnd={(e) => setIsMovingMap(false)}
         style={{ width: '100%', height: '100%' }}
         mapStyle='mapbox://styles/y4shiro/cl279tgti00jb15qjk6klkzrh'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_KEY}
