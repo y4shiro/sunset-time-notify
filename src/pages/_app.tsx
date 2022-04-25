@@ -8,7 +8,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ChakraProvider>
-        {' '}
         <Layout>
           <Component {...pageProps} />
         </Layout>
