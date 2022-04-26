@@ -1,5 +1,5 @@
-import { atom } from 'recoil';
-import { RecoilAtomKeys } from './RecoilKeys';
+import { atom, DefaultValue, selector } from 'recoil';
+import { RecoilAtomKeys, RecoilSelectorKeys } from './RecoilKeys';
 
 type CurrentPosition = {
   latitude: number;
@@ -9,16 +9,42 @@ type CurrentPosition = {
 
 type IsMovingMap = boolean;
 
-export const currentPositionState = atom<CurrentPosition>({
-  key: RecoilAtomKeys.CURRENT_POSITION_STATE,
-  default: {
-    latitude: 35.7022589,
-    longitude: 139.7744733,
-    zoom: 12,
-  },
+// Atom
+const latitudeState = atom<number>({
+  key: 'latitude',
+  default: 35.7022589,
+});
+
+const longitudeState = atom<number>({
+  key: 'longitude',
+  default: 139.7744733,
+});
+
+const zoomState = atom<number>({
+  key: 'zoom',
+  default: 12,
 });
 
 export const isMovingMapState = atom<IsMovingMap>({
   key: RecoilAtomKeys.IS_MOVING_MAP_STATE,
   default: false,
+});
+
+// Selector
+export const mapViewState = selector<CurrentPosition>({
+  key: RecoilSelectorKeys.VIEW_STATE,
+  get: ({ get }) => {
+    const view = {
+      latitude: get(latitudeState),
+      longitude: get(longitudeState),
+      zoom: get(zoomState),
+    };
+    return view;
+  },
+  set: ({ set }, newValue) => {
+    if (newValue instanceof DefaultValue) return;
+    set(latitudeState, newValue.latitude);
+    set(longitudeState, newValue.longitude);
+    set(zoomState, newValue.zoom);
+  },
 });

@@ -6,10 +6,10 @@ import Map, { NavigationControl, GeolocateControl, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { useRecoilState } from 'recoil';
-import { currentPositionState, isMovingMapState } from '../../stores/currentPositionState';
+import { isMovingMapState, mapViewState } from '../../stores/currentPositionState';
 
 const ReactMapGl: VFC = () => {
-  const [currentPosition, setCurrentPosition] = useRecoilState(currentPositionState);
+  const [viewState, setViewState] = useRecoilState(mapViewState);
   const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
 
   return (
@@ -26,13 +26,12 @@ const ReactMapGl: VFC = () => {
         position='absolute'
         zIndex='1'
       >
-        緯度: {currentPosition.latitude.toFixed(4)} | 経度: {currentPosition.longitude.toFixed(4)} |
-        移動中:
+        緯度: {viewState.latitude.toFixed(4)} | 経度: {viewState.longitude.toFixed(4)} | 移動中:
         {`${isMovingMap}`}
       </Box>
       <Map
-        {...currentPosition}
-        onMove={(e) => setCurrentPosition(e.viewState)}
+        {...viewState}
+        onMove={(e) => setViewState(e.viewState)}
         onMoveStart={(e) => setIsMovingMap(true)}
         onMoveEnd={(e) => setIsMovingMap(false)}
         style={{ width: '100%', height: '100%' }}
