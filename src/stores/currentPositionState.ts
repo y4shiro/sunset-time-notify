@@ -11,17 +11,17 @@ type IsMovingMap = boolean;
 
 // Atom
 const latitudeState = atom<number>({
-  key: 'latitude',
+  key: RecoilAtomKeys.LATITUDE_STATE,
   default: 35.7022589,
 });
 
 const longitudeState = atom<number>({
-  key: 'longitude',
+  key: RecoilAtomKeys.LONGITUDE_STATE,
   default: 139.7744733,
 });
 
 const zoomState = atom<number>({
-  key: 'zoom',
+  key: RecoilAtomKeys.ZOOM_STATE,
   default: 12,
 });
 
