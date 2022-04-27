@@ -1,16 +1,11 @@
 import { VFC } from 'react';
 import { Box, HStack, Text } from '@chakra-ui/react';
 
+import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import { useCalcSunTime } from '../../hooks/useCalcSunTime';
 
-type Props = {
-  latitude: number;
-  longitude: number;
-  altitude: number;
-  isLoading: boolean;
-};
-
-export const SunTime: VFC<Props> = ({ latitude, longitude, altitude, isLoading }) => {
+export const SunTime: VFC = () => {
+  const { latitude, longitude, altitude, isLoading } = useCurrentPosition();
   const { sunriseTime, sunsetTime } = useCalcSunTime(latitude, longitude, altitude);
 
   return (

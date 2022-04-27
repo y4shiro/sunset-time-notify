@@ -1,5 +1,6 @@
 import { cleanup } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks';
+import { RecoilRoot } from 'recoil';
 import { useCurrentPosition } from './useCurrentPosition';
 
 const originalNavigator = { ...navigator };
@@ -44,7 +45,7 @@ describe('navigator が存在する場合', () => {
     navigatorSpy?.mockRestore();
   });
 
-  test('座標と高さが取得出来る場合、各値が useState に格納されている', async () => {
+  test('座標と高さが取得出来る場合、各値が Recoil State に格納されている', async () => {
     navigatorSpy = jest.spyOn(global, 'navigator', 'get');
     navigatorSpy.mockImplementation(() => ({
       ...originalNavigator,
@@ -56,13 +57,9 @@ describe('navigator が存在する場合', () => {
       },
     }));
 
-    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition());
-
-    expect(result.current.latitude).toBe(0);
-    expect(result.current.longitude).toBe(0);
-    expect(result.current.altitude).toBe(0);
-    expect(result.current.locationError).toBe('');
-    expect(result.current.isLoading).toBeTruthy();
+    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition(), {
+      wrapper: RecoilRoot,
+    });
 
     await waitForNextUpdate();
 
@@ -73,7 +70,7 @@ describe('navigator が存在する場合', () => {
     expect(result.current.isLoading).toBeFalsy();
   });
 
-  test('座標のみ取得出来る場合、各値が useState に格納されている', async () => {
+  test('座標のみ取得出来る場合、各値が Recoil State に格納されている', async () => {
     navigatorSpy = jest.spyOn(global, 'navigator', 'get');
     navigatorSpy.mockImplementation(() => ({
       ...originalNavigator,
@@ -84,7 +81,9 @@ describe('navigator が存在する場合', () => {
         },
       },
     }));
-    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition());
+    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition(), {
+      wrapper: RecoilRoot,
+    });
 
     await waitForNextUpdate();
 
@@ -95,7 +94,7 @@ describe('navigator が存在する場合', () => {
     expect(result.current.isLoading).toBeFalsy();
   });
 
-  test('座標の取得に失敗した場合、エラー内容が useState に格納されている', async () => {
+  test('座標の取得に失敗した場合、エラー内容が Recoil State に格納されている', async () => {
     navigatorSpy = jest.spyOn(global, 'navigator', 'get');
     navigatorSpy.mockImplementation(() => ({
       ...originalNavigator,
@@ -106,7 +105,9 @@ describe('navigator が存在する場合', () => {
         }),
       },
     }));
-    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition());
+    const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition(), {
+      wrapper: RecoilRoot,
+    });
 
     await waitForNextUpdate();
 
@@ -128,7 +129,7 @@ describe('navigator が undefined の場合', () => {
   });
 
   test('locationError に "お使いのブラウザでは位置情報を取得できません" の文字列が保存されている', async () => {
-    const { result } = renderHook(() => useCurrentPosition());
+    const { result } = renderHook(() => useCurrentPosition(), { wrapper: RecoilRoot });
 
     await act(async () => {
       expect(result.current.locationError).toBe('お使いのブラウザでは位置情報を取得できません');
