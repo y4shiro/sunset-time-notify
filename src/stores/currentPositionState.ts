@@ -1,10 +1,17 @@
-import { atom, DefaultValue, selector, useRecoilState } from 'recoil';
+import { atom, DefaultValue, selector, useRecoilState, useRecoilValue } from 'recoil';
 import { RecoilAtomKeys, RecoilSelectorKeys } from './RecoilKeys';
+
+type MapView = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
 
 type CurrentPosition = {
   latitude: number;
   longitude: number;
-  zoom: number;
+  altitude: number;
+  locationError: string;
 };
 
 type IsMovingMap = boolean;
@@ -41,7 +48,7 @@ const isMovingMapState = atom<IsMovingMap>({
 });
 
 // Selector
-const mapViewState = selector<CurrentPosition>({
+const mapViewSelector = selector<MapView>({
   key: RecoilSelectorKeys.MAP_VIEW,
   get: ({ get }) => {
     const view = {
@@ -61,7 +68,7 @@ const mapViewState = selector<CurrentPosition>({
 
 // custom hooks
 export const useReactMapState = () => {
-  const [viewState, setViewState] = useRecoilState(mapViewState);
+  const [viewState, setViewState] = useRecoilState(mapViewSelector);
   const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
 
   const setIsMovingMapToTrue = () => setIsMovingMap(true);
