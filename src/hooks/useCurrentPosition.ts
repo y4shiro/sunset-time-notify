@@ -1,10 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+
+import { useRecoilState } from 'recoil';
+import {
+  altitudeState,
+  latitudeState,
+  longitudeState,
+  locationErrorState,
+} from '../stores/currentPositionState';
 
 export const useCurrentPosition = () => {
-  const [latitude, setLatitude] = useState(0); // Latitude 緯度
-  const [longitude, setLongitude] = useState(0); // Longitude 経度
-  const [altitude, setAltitude] = useState<number>(0); // Altitude 高度
-  const [locationError, setLocationError] = useState('');
+  const [latitude, setLatitude] = useRecoilState(latitudeState); // Latitude 緯度
+  const [longitude, setLongitude] = useRecoilState(longitudeState); // Longitude 経度
+  const [altitude, setAltitude] = useRecoilState(altitudeState); // Altitude 高度
+  const [locationError, setLocationError] = useRecoilState(locationErrorState);
   const isLoading = !latitude && !longitude;
 
   const getCurrentPosition = () => {

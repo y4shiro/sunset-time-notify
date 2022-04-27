@@ -17,17 +17,17 @@ type CurrentPosition = {
 type IsMovingMap = boolean;
 
 // Atom
-const latitudeState = atom<number>({
+export const latitudeState = atom<number>({
   key: RecoilAtomKeys.LATITUDE_STATE,
   default: 35.7022589,
 });
 
-const longitudeState = atom<number>({
+export const longitudeState = atom<number>({
   key: RecoilAtomKeys.LONGITUDE_STATE,
   default: 139.7744733,
 });
 
-const altitudeState = atom<number>({
+export const altitudeState = atom<number>({
   key: RecoilAtomKeys.ALTITUDE_STATE,
   default: 0,
 });
@@ -37,7 +37,7 @@ const zoomState = atom<number>({
   default: 12,
 });
 
-const locationErrorState = atom<string>({
+export const locationErrorState = atom<string>({
   key: RecoilAtomKeys.LOCATION_ERROR_STATE,
   default: '',
 });
