@@ -58,17 +58,17 @@ describe('navigator が存在する場合', () => {
 
     const { result, waitForNextUpdate } = renderHook(() => useCurrentPosition());
 
-    expect(result.current.lat).toBe(0);
-    expect(result.current.lon).toBe(0);
-    expect(result.current.alt).toBe(0);
+    expect(result.current.latitude).toBe(0);
+    expect(result.current.longitude).toBe(0);
+    expect(result.current.altitude).toBe(0);
     expect(result.current.locationError).toBe('');
     expect(result.current.isLoading).toBeTruthy();
 
     await waitForNextUpdate();
 
-    expect(result.current.lat).toBe(35.681974167122895);
-    expect(result.current.lon).toBe(139.76716432155922);
-    expect(result.current.alt).toBe(10);
+    expect(result.current.latitude).toBe(35.681974167122895);
+    expect(result.current.longitude).toBe(139.76716432155922);
+    expect(result.current.altitude).toBe(10);
     expect(result.current.locationError).toBe('');
     expect(result.current.isLoading).toBeFalsy();
   });
@@ -88,9 +88,9 @@ describe('navigator が存在する場合', () => {
 
     await waitForNextUpdate();
 
-    expect(result.current.lat).toBe(35.681974167122895);
-    expect(result.current.lon).toBe(139.76716432155922);
-    expect(result.current.alt).toBe(0);
+    expect(result.current.latitude).toBe(35.681974167122895);
+    expect(result.current.longitude).toBe(139.76716432155922);
+    expect(result.current.altitude).toBe(0);
     expect(result.current.locationError).toBe('');
     expect(result.current.isLoading).toBeFalsy();
   });

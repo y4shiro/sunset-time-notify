@@ -2,13 +2,13 @@ import { VFC } from 'react';
 import { Box, HStack, Text } from '@chakra-ui/react';
 
 type Props = {
-  lat: number;
-  lon: number;
-  alt: number;
+  latitude: number;
+  longitude: number;
+  altitude: number;
   locationError: string;
 };
 
-export const CurrentLocation: VFC<Props> = ({ lat, lon, alt, locationError }) => {
+export const CurrentLocation: VFC<Props> = ({ latitude, longitude, altitude, locationError }) => {
   return (
     <Box
       my={4}
@@ -25,9 +25,9 @@ export const CurrentLocation: VFC<Props> = ({ lat, lon, alt, locationError }) =>
         ) : (
           <>
             {/** 緯度経度が 0 度の場合は取得中と表示する。レアケースだが、緯度経度 0 の地点は表示できないので、この辺厳密にする場合は取得中ステータスで管理する*/}
-            <Text fontSize='20'>緯度:{lat || '取得中'}</Text>{' '}
-            <Text fontSize='20'>経度:{lon || '取得中'}</Text>{' '}
-            <Text fontSize='20'>高度:{alt || '未取得'}</Text>
+            <Text fontSize='20'>緯度:{latitude || '取得中'}</Text>{' '}
+            <Text fontSize='20'>経度:{longitude || '取得中'}</Text>{' '}
+            <Text fontSize='20'>高度:{altitude || '未取得'}</Text>
           </>
         )}
       </HStack>

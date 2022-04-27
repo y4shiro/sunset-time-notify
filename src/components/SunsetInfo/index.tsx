@@ -8,15 +8,25 @@ import { SunTime } from './SunTime';
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
 const SunsetInfo: VFC = () => {
-  const { lat, lon, alt, locationError, isLoading } = useCurrentPosition();
+  const { latitude, longitude, altitude, locationError, isLoading } = useCurrentPosition();
 
   return (
     <Box w='full' bgColor='gray.100'>
       <Box m={8} p={8} borderRadius='xl' shadow='lg' bgColor='gray.50'>
         <Heading size='lg'>SunsetInfo カード</Heading>
-        <CurrentLocation lat={lat} lon={lon} alt={alt} locationError={locationError} />
+        <CurrentLocation
+          latitude={latitude}
+          longitude={longitude}
+          altitude={altitude}
+          locationError={locationError}
+        />
         <CurrentTime />
-        <SunTime lat={lat} lon={lon} alt={alt} isLoading={isLoading} />
+        <SunTime
+          latitude={latitude}
+          longitude={longitude}
+          altitude={altitude}
+          isLoading={isLoading}
+        />
       </Box>
     </Box>
   );

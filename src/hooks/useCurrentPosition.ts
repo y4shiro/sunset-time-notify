@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export const useCurrentPosition = () => {
-  const [lat, setLat] = useState(0); // Latitude 緯度
-  const [lon, setLon] = useState(0); // Longitude 経度
-  const [alt, setAlt] = useState<number>(0); // Altitude 高度
+  const [latitude, setLatitude] = useState(0); // Latitude 緯度
+  const [longitude, setLongitude] = useState(0); // Longitude 経度
+  const [altitude, setAltitude] = useState<number>(0); // Altitude 高度
   const [locationError, setLocationError] = useState('');
-  const isLoading = !lat && !lon;
+  const isLoading = !latitude && !longitude;
 
   const getCurrentPosition = () => {
     return new Promise(
@@ -23,10 +23,10 @@ export const useCurrentPosition = () => {
       const getPosition = async () => {
         try {
           const position = await getCurrentPosition();
-          setLat(position.coords.latitude);
-          setLon(position.coords.longitude);
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
           if (!position.coords.altitude) return; // 高度は PC 等取得できない端末があるので、未取得の場合は早期リターン
-          setAlt(position.coords.altitude);
+          setAltitude(position.coords.altitude);
         } catch (e) {
           // @ts-ignore
           setLocationError(e.message);
@@ -39,5 +39,5 @@ export const useCurrentPosition = () => {
     }
   }, []);
 
-  return { lat, lon, alt, locationError, isLoading };
+  return { latitude, longitude, altitude, locationError, isLoading };
 };
