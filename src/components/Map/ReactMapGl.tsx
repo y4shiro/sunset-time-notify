@@ -5,12 +5,10 @@ import { AddIcon } from '@chakra-ui/icons';
 import Map, { NavigationControl, GeolocateControl, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import { useRecoilState } from 'recoil';
-import { isMovingMapState, mapViewState } from '../../stores/currentPositionState';
+import { useReactMapState } from '../../stores/currentPositionState';
 
 const ReactMapGl: VFC = () => {
-  const [viewState, setViewState] = useRecoilState(mapViewState);
-  const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
+  const { viewState, setViewState, isMovingMap, setIsMovingMap } = useReactMapState();
 
   return (
     <Box w='100%' h='100%'>

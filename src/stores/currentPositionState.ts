@@ -1,4 +1,4 @@
-import { atom, DefaultValue, selector } from 'recoil';
+import { atom, DefaultValue, selector, useRecoilState } from 'recoil';
 import { RecoilAtomKeys, RecoilSelectorKeys } from './RecoilKeys';
 
 type CurrentPosition = {
@@ -25,13 +25,13 @@ const zoomState = atom<number>({
   default: 12,
 });
 
-export const isMovingMapState = atom<IsMovingMap>({
+const isMovingMapState = atom<IsMovingMap>({
   key: RecoilAtomKeys.IS_MOVING_MAP_STATE,
   default: false,
 });
 
 // Selector
-export const mapViewState = selector<CurrentPosition>({
+const mapViewState = selector<CurrentPosition>({
   key: RecoilSelectorKeys.VIEW_STATE,
   get: ({ get }) => {
     const view = {
@@ -48,3 +48,11 @@ export const mapViewState = selector<CurrentPosition>({
     set(zoomState, newValue.zoom);
   },
 });
+
+// custom hooks
+export const useReactMapState = () => {
+  const [viewState, setViewState] = useRecoilState(mapViewState);
+  const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
+
+  return { viewState, setViewState, isMovingMap, setIsMovingMap };
+};
