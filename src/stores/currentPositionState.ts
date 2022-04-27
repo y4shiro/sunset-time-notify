@@ -20,9 +20,19 @@ const longitudeState = atom<number>({
   default: 139.7744733,
 });
 
+const altitudeState = atom<number>({
+  key: RecoilAtomKeys.ALTITUDE_STATE,
+  default: 0,
+});
+
 const zoomState = atom<number>({
   key: RecoilAtomKeys.ZOOM_STATE,
   default: 12,
+});
+
+const locationErrorState = atom<string>({
+  key: RecoilAtomKeys.LOCATION_ERROR_STATE,
+  default: '',
 });
 
 const isMovingMapState = atom<IsMovingMap>({
