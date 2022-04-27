@@ -54,5 +54,14 @@ export const useReactMapState = () => {
   const [viewState, setViewState] = useRecoilState(mapViewState);
   const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
 
-  return { viewState, setViewState, isMovingMap, setIsMovingMap };
+  const setIsMovingMapToTrue = () => setIsMovingMap(true);
+  const setIsMovingMapToFalse = () => setIsMovingMap(false);
+
+  return {
+    viewState,
+    setViewState,
+    isMovingMap,
+    setIsMovingMapToTrue,
+    setIsMovingMapToFalse,
+  };
 };

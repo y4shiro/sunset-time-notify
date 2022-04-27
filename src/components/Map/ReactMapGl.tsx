@@ -8,7 +8,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { useReactMapState } from '../../stores/currentPositionState';
 
 const ReactMapGl: VFC = () => {
-  const { viewState, setViewState, isMovingMap, setIsMovingMap } = useReactMapState();
+  const { viewState, setViewState, isMovingMap, setIsMovingMapToTrue, setIsMovingMapToFalse } =
+    useReactMapState();
 
   return (
     <Box w='100%' h='100%'>
@@ -30,8 +31,8 @@ const ReactMapGl: VFC = () => {
       <Map
         {...viewState}
         onMove={(e) => setViewState(e.viewState)}
-        onMoveStart={(e) => setIsMovingMap(true)}
-        onMoveEnd={(e) => setIsMovingMap(false)}
+        onMoveStart={() => setIsMovingMapToTrue()}
+        onMoveEnd={() => setIsMovingMapToFalse()}
         style={{ width: '100%', height: '100%' }}
         mapStyle='mapbox://styles/y4shiro/cl279tgti00jb15qjk6klkzrh'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_KEY}
