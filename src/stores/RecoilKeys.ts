@@ -4,6 +4,6 @@ export enum RecoilAtomKeys {
 }
 
 export enum RecoilSelectorKeys {
-  VIEW_STATE = 'viewState',
-  IS_MOVING = 'isMoving',
+  MAP_VIEW = 'mapView',
+  IS_MOVING_MAP = 'isMovingMap',
 }

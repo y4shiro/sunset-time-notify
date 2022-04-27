@@ -32,7 +32,7 @@ const isMovingMapState = atom<IsMovingMap>({
 
 // Selector
 const mapViewState = selector<CurrentPosition>({
-  key: RecoilSelectorKeys.VIEW_STATE,
+  key: RecoilSelectorKeys.MAP_VIEW,
   get: ({ get }) => {
     const view = {
       latitude: get(latitudeState),
