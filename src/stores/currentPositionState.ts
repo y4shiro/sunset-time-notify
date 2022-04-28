@@ -1,5 +1,6 @@
-import { atom, DefaultValue, selector, useRecoilState } from 'recoil';
+import { atom, DefaultValue, selector } from 'recoil';
 import { RecoilAtomKeys, RecoilSelectorKeys } from './RecoilKeys';
+import { DEFAULT_POSITION } from './../utils/constants';
 
 type MapView = {
   latitude: number;
@@ -12,12 +13,12 @@ type IsMovingMap = boolean;
 // Atom
 export const latitudeState = atom<number>({
   key: RecoilAtomKeys.LATITUDE_STATE,
-  default: 35.7022589,
+  default: DEFAULT_POSITION.latitude,
 });
 
 export const longitudeState = atom<number>({
   key: RecoilAtomKeys.LONGITUDE_STATE,
-  default: 139.7744733,
+  default: DEFAULT_POSITION.longitude,
 });
 
 export const altitudeState = atom<number>({
