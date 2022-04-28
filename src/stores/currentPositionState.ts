@@ -1,17 +1,10 @@
-import { atom, DefaultValue, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { atom, DefaultValue, selector, useRecoilState } from 'recoil';
 import { RecoilAtomKeys, RecoilSelectorKeys } from './RecoilKeys';
 
 type MapView = {
   latitude: number;
   longitude: number;
   zoom: number;
-};
-
-type CurrentPosition = {
-  latitude: number;
-  longitude: number;
-  altitude: number;
-  locationError: string;
 };
 
 type IsMovingMap = boolean;
