@@ -1,17 +1,12 @@
 import { VFC } from 'react';
 import { Box, HStack, Text } from '@chakra-ui/react';
 
+import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import { useCalcSunTime } from '../../hooks/useCalcSunTime';
 
-type Props = {
-  lat: number;
-  lon: number;
-  alt: number;
-  isLoading: boolean;
-};
-
-export const SunTime: VFC<Props> = ({ lat, lon, alt, isLoading }) => {
-  const { sunriseTime, sunsetTime } = useCalcSunTime(lat, lon, alt);
+export const SunTime: VFC = () => {
+  const { latitude, longitude, altitude, isLoading } = useCurrentPosition();
+  const { sunriseTime, sunsetTime } = useCalcSunTime(latitude, longitude, altitude);
 
   return (
     <HStack justifyContent='space-around'>
