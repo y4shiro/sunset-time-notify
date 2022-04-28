@@ -5,7 +5,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import Map, { NavigationControl, GeolocateControl, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import { useReactMapState } from '../../stores/currentPositionState';
+import { useReactMapState } from '../../hooks/useReactMapState';
 
 const ReactMapGl: VFC = () => {
   const { viewState, setViewState, isMovingMap, setIsMovingMapToTrue, setIsMovingMapToFalse } =

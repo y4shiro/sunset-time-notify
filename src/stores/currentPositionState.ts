@@ -35,13 +35,13 @@ export const locationErrorState = atom<string>({
   default: '',
 });
 
-const isMovingMapState = atom<IsMovingMap>({
+export const isMovingMapState = atom<IsMovingMap>({
   key: RecoilAtomKeys.IS_MOVING_MAP_STATE,
   default: false,
 });
 
 // Selector
-const mapViewSelector = selector<MapView>({
+export const mapViewSelector = selector<MapView>({
   key: RecoilSelectorKeys.MAP_VIEW,
   get: ({ get }) => {
     const view = {
@@ -58,20 +58,3 @@ const mapViewSelector = selector<MapView>({
     set(zoomState, newValue.zoom);
   },
 });
-
-// custom hooks
-export const useReactMapState = () => {
-  const [viewState, setViewState] = useRecoilState(mapViewSelector);
-  const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
-
-  const setIsMovingMapToTrue = () => setIsMovingMap(true);
-  const setIsMovingMapToFalse = () => setIsMovingMap(false);
-
-  return {
-    viewState,
-    setViewState,
-    isMovingMap,
-    setIsMovingMapToTrue,
-    setIsMovingMapToFalse,
-  };
-};
