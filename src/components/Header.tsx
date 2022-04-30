@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 
 const Header: VFC = () => {
   return (
-    <Box as='nav' p={2} bgColor={'blue.600'} rounded={'md'}>
+    <Box as='nav' display={{ sm: 'none', md: 'block' }} p={2} bgColor={'blue.600'} rounded={'md'}>
       <Flex px={4} alignItems={'center'} justify={'space-between'}>
         <NextLink href='#' passHref>
           <Link textColor={'gray.100'} _hover={{ textDecorationLine: 'none' }}>
