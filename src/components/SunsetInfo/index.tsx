@@ -7,7 +7,7 @@ import { SunTime } from './SunTime';
 
 const SunsetInfo: VFC = () => {
   return (
-    <VStack w='full' p={{ base: 4, md: 6 }} shadow='lg' bgColor='gray.100'>
+    <VStack w='full' gap='2' p={{ base: 4, md: 6 }} shadow='lg' bgColor='gray.100'>
       <CurrentLocation />
       <CurrentTime />
       <SunTime />
