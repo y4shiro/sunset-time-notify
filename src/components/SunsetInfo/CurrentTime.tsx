@@ -16,7 +16,7 @@ const CurrentTime: VFC = () => {
       shadow='md'
       bgColor='white'
     >
-      <Text fontSize='20'>現在時刻 : {currentTimeString}</Text>
+      <Text fontSize={{ base: 16, md: 20 }}>現在時刻 : {currentTimeString}</Text>
     </Box>
   );
 };
