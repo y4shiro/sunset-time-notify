@@ -7,15 +7,7 @@ export const CurrentLocation: VFC = () => {
   const { latitude, longitude, altitude, locationError } = useCurrentPosition();
 
   return (
-    <Box
-      my={4}
-      p={4}
-      borderRadius='lg'
-      border='1px'
-      borderColor='gray.200'
-      shadow='md'
-      bgColor='white'
-    >
+    <Box p={4} borderRadius='lg' border='1px' borderColor='gray.200' shadow='md' bgColor='white'>
       <HStack>
         {locationError ? (
           <Text fontSize='20'>位置情報の取得に失敗しました</Text>
