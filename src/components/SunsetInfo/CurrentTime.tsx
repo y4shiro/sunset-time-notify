@@ -8,7 +8,7 @@ const CurrentTime: VFC = () => {
 
   return (
     <Box
-      my={4}
+      w='full'
       p={4}
       borderRadius='lg'
       border='1px'
