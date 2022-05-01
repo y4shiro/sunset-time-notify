@@ -7,12 +7,10 @@ import { SunTime } from './SunTime';
 
 const SunsetInfo: VFC = () => {
   return (
-    <Box w='full' bgColor='gray.100'>
-      <Box m={4} p={4} borderRadius='xl' shadow='lg' bgColor='gray.50'>
-        <CurrentLocation />
-        <CurrentTime />
-        <SunTime />
-      </Box>
+    <Box w='full' p={{ base: 4, md: 6 }} shadow='lg' bgColor='gray.100'>
+      <CurrentLocation />
+      <CurrentTime />
+      <SunTime />
     </Box>
   );
 };
