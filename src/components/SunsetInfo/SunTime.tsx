@@ -1,5 +1,6 @@
 import { VFC } from 'react';
-import { Box, HStack, Text } from '@chakra-ui/react';
+import { HStack, Text } from '@chakra-ui/react';
+import { FiSunrise, FiSunset } from 'react-icons/fi';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import { useCalcSunTime } from '../../hooks/useCalcSunTime';
@@ -10,16 +11,18 @@ export const SunTime: VFC = () => {
 
   return (
     <HStack w='full' justifyContent='space-around'>
-      <Box p={{ base: 4, md: 6 }} borderRadius='xl' shadow='lg' bgColor='#FFBF15'>
-        <Text textColor='white' fontSize={{ base: 20, md: 24 }} fontWeight='bold'>
-          日の出 {isLoading ? '読込中' : `${sunriseTime}`}
+      <HStack p={{ base: 4, md: 6 }} borderRadius='xl' shadow='lg' bgColor='#FFBF15'>
+        <FiSunrise size='36' color='white' />
+        <Text textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
+          {isLoading ? '読込中' : `${sunriseTime}`}
         </Text>
-      </Box>
-      <Box p={{ base: 4, md: 6 }} borderRadius='xl' shadow='lg' bgColor='#142C8C'>
-        <Text textColor='white' fontSize={{ base: 20, md: 24 }} fontWeight='bold'>
-          日の入 {isLoading ? '読込中' : `${sunsetTime}`}
+      </HStack>
+      <HStack p={{ base: 4, md: 6 }} borderRadius='xl' shadow='lg' bgColor='#142C8C'>
+        <FiSunset size='36' color='white' />
+        <Text as='span' textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
+          {isLoading ? '読込中' : `${sunsetTime}`}
         </Text>
-      </Box>
+      </HStack>
     </HStack>
   );
 };
