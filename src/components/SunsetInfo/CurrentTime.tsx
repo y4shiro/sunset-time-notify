@@ -1,5 +1,6 @@
 import { VFC } from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { HStack, Text } from '@chakra-ui/react';
+import { FaClock } from 'react-icons/fa';
 
 import { useCurrentTime } from '../../hooks/useCurrentTime';
 
@@ -7,7 +8,7 @@ const CurrentTime: VFC = () => {
   const { currentTimeString } = useCurrentTime();
 
   return (
-    <Box
+    <HStack
       w='full'
       p={4}
       borderRadius='lg'
@@ -16,8 +17,9 @@ const CurrentTime: VFC = () => {
       shadow='md'
       bgColor='white'
     >
-      <Text fontSize={{ base: 16, md: 20 }}>現在時刻 : {currentTimeString}</Text>
-    </Box>
+      <FaClock fontSize='24' />
+      <Text fontSize={{ base: 16, md: 20 }}>{currentTimeString}</Text>
+    </HStack>
   );
 };
 
