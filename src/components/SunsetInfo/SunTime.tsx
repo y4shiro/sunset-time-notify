@@ -10,14 +10,28 @@ export const SunTime: VFC = () => {
   const { sunriseTime, sunsetTime } = useCalcSunTime(latitude, longitude, altitude);
 
   return (
-    <HStack w='full' justifyContent='space-around'>
-      <HStack p={{ base: 4, md: 6 }} borderRadius='xl' shadow='lg' bgColor='#FFBF15'>
+    <HStack w='full' gap='2'>
+      <HStack
+        w='50%'
+        p={{ base: 4, md: 6 }}
+        justifyContent='center'
+        borderRadius='xl'
+        shadow='lg'
+        bgColor='#FFBF15'
+      >
         <FiSunrise size='36' color='white' />
         <Text textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
           {isLoading ? '読込中' : `${sunriseTime}`}
         </Text>
       </HStack>
-      <HStack p={{ base: 4, md: 6 }} borderRadius='xl' shadow='lg' bgColor='#142C8C'>
+      <HStack
+        w='50%'
+        p={{ base: 4, md: 6 }}
+        justifyContent='center'
+        borderRadius='xl'
+        shadow='lg'
+        bgColor='#142C8C'
+      >
         <FiSunset size='36' color='white' />
         <Text as='span' textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
           {isLoading ? '読込中' : `${sunsetTime}`}
