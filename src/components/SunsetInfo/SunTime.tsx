@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { HStack, Text } from '@chakra-ui/react';
+import { SimpleGrid, HStack, Text } from '@chakra-ui/react';
 import { FiSunrise, FiSunset } from 'react-icons/fi';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
@@ -10,10 +10,10 @@ export const SunTime: VFC = () => {
   const { sunriseTime, sunsetTime } = useCalcSunTime(latitude, longitude, altitude);
 
   return (
-    <HStack w='full' gap='2'>
+    <SimpleGrid w='full' columns={2} gap='4'>
       <HStack
-        w='50%'
-        p={{ base: 4, md: 6 }}
+        w='full'
+        p='4'
         justifyContent='center'
         borderRadius='xl'
         shadow='lg'
@@ -25,8 +25,8 @@ export const SunTime: VFC = () => {
         </Text>
       </HStack>
       <HStack
-        w='50%'
-        p={{ base: 4, md: 6 }}
+        w='full'
+        p='4'
         justifyContent='center'
         borderRadius='xl'
         shadow='lg'
@@ -37,6 +37,6 @@ export const SunTime: VFC = () => {
           {isLoading ? '読込中' : `${sunsetTime}`}
         </Text>
       </HStack>
-    </HStack>
+    </SimpleGrid>
   );
 };
