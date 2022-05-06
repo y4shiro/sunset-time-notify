@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { HStack, Text } from '@chakra-ui/react';
+import { Box, HStack, Text } from '@chakra-ui/react';
 import { FaClock } from 'react-icons/fa';
 
 import { useCurrentTime } from '../../hooks/useCurrentTime';
@@ -10,7 +10,8 @@ const CurrentTime: VFC = () => {
   return (
     <HStack
       w='full'
-      p={4}
+      p='4'
+      gap='2'
       borderRadius='lg'
       border='1px'
       borderColor='gray.200'
