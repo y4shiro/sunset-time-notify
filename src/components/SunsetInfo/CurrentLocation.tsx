@@ -17,13 +17,12 @@ export const CurrentLocation: VFC = () => {
       borderColor='gray.200'
       shadow='md'
       bgColor='white'
-      justify='space-around'
     >
       <FaMapMarkerAlt fontSize='24' />
       {locationError ? (
         <Text fontSize='20'>位置情報の取得に失敗しました</Text>
       ) : (
-        <>
+        <HStack w='full' justify='space-evenly'>
           {/** 緯度経度が 0 度の場合は取得中と表示する。レアケースだが、緯度経度 0 の地点は表示できないので、この辺厳密にする場合は取得中ステータスで管理する*/}
           <Box>
             <TitleText>緯度</TitleText>
@@ -41,7 +40,7 @@ export const CurrentLocation: VFC = () => {
             <TitleText>高度</TitleText>
             <ContentText>{altitude ? altitude.toFixed(4) : '未取得'}</ContentText>
           </Box>
-        </>
+        </HStack>
       )}
     </HStack>
   );
