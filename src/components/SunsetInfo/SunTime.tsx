@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { SimpleGrid, HStack, Text } from '@chakra-ui/react';
+import { SimpleGrid, HStack, Text, TextProps } from '@chakra-ui/react';
 import { FiSunrise, FiSunset } from 'react-icons/fi';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
@@ -7,7 +7,7 @@ import { useCalcSunTime } from '../../hooks/useCalcSunTime';
 
 export const SunTime: VFC = () => {
   const { latitude, longitude, altitude, isLoading } = useCurrentPosition();
-  const { sunriseTime, sunsetTime } = useCalcSunTime(latitude, longitude, altitude);
+  const { sunriseTime, sunsetTime, isValid } = useCalcSunTime(latitude, longitude, altitude);
 
   return (
     <SimpleGrid w='full' columns={2} gap='4'>
@@ -20,9 +20,7 @@ export const SunTime: VFC = () => {
         bgColor='#FFBF15'
       >
         <FiSunrise size='36' color='white' />
-        <Text textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
-          {isLoading ? '読込中' : `${sunriseTime}`}
-        </Text>
+        {SunTimeText(isLoading, isValid, sunriseTime)}
       </HStack>
       <HStack
         w='full'
@@ -33,10 +31,27 @@ export const SunTime: VFC = () => {
         bgColor='#142C8C'
       >
         <FiSunset size='36' color='white' />
-        <Text as='span' textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
-          {isLoading ? '読込中' : `${sunsetTime}`}
-        </Text>
+        {SunTimeText(isLoading, isValid, sunsetTime)}
       </HStack>
     </SimpleGrid>
   );
 };
+
+const SunTimeText = (isLoading: boolean, isValid: boolean, text: string): TextProps => {
+  if (isLoading) return <LoadingText />;
+  if (isValid) return <ValidText>{text}</ValidText>;
+  return <InValidText>{text}</InValidText>;
+};
+
+const LoadingText: VFC<TextProps> = () => (
+  <Text textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
+    読込中
+  </Text>
+);
+
+const ValidText: VFC<TextProps> = (props) => (
+  <Text textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold' {...props} />
+);
+const InValidText: VFC<TextProps> = (props) => (
+  <Text textColor='white' fontSize={{ base: 16, md: 20 }} fontWeight='bold' {...props} />
+);
