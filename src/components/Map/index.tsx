@@ -5,7 +5,7 @@ import ReactMapGl from './ReactMapGl';
 
 const Map: VFC = () => {
   return (
-    <Box w='100%' minH='80vh'>
+    <Box w='100%' h={{ base: '50vh', md: '80vh' }}>
       <ReactMapGl />
     </Box>
   );

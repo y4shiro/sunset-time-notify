@@ -40,8 +40,8 @@ const ReactMapGl: VFC = () => {
         <Marker longitude={139.7} latitude={35.7} color='#000000' />
         <Marker longitude={139.65} latitude={35.65} color='red' />
         <Marker longitude={139.6} latitude={35.6} />
-        <NavigationControl />
-        <GeolocateControl />
+        <GeolocateControl position='bottom-right' />
+        <NavigationControl position='bottom-right' />
         <AddIcon
           w={8}
           h={8}

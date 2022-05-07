@@ -6,10 +6,10 @@ export const useCalcSunTime = (
   lon: number,
   alt: number,
   date: Date = new Date(),
-): { sunriseTime: string; sunsetTime: string } => {
+): { sunriseTime: string; sunsetTime: string; isValid: boolean } => {
   // 引数で渡ってきた date が Invalid Date の場合
   if (!isValid(date)) {
-    return { sunriseTime: '不正な日付です', sunsetTime: '不正な日付です' };
+    return { sunriseTime: '不正な日付です', sunsetTime: '不正な日付です', isValid: false };
   }
 
   const correctAlt = alt < 0 ? 0 : alt; // suncalc は alt(高度) 0m 未満に対応していないので、その場合は 0m として扱う
@@ -19,8 +19,9 @@ export const useCalcSunTime = (
   // 基本的に白夜・極夜の場合が多いが、他のパターンが漏れている可能性もある
   if (!isValid(times.sunrise)) {
     return {
-      sunriseTime: '白夜または極夜です',
-      sunsetTime: '白夜または極夜です',
+      sunriseTime: '白夜または極夜',
+      sunsetTime: '白夜または極夜',
+      isValid: false,
     };
   }
 
@@ -28,5 +29,6 @@ export const useCalcSunTime = (
   return {
     sunriseTime: format(times.sunrise, 'HH:mm:ss'),
     sunsetTime: format(times.sunset, 'HH:mm:ss'),
+    isValid: true,
   };
 };

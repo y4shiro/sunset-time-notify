@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, VStack } from '@chakra-ui/react';
 
 import { CurrentLocation } from './CurrentLocation';
 import { CurrentTime } from './CurrentTime';
@@ -7,14 +7,19 @@ import { SunTime } from './SunTime';
 
 const SunsetInfo: VFC = () => {
   return (
-    <Box w='full' bgColor='gray.100'>
-      <Box m={8} p={8} borderRadius='xl' shadow='lg' bgColor='gray.50'>
-        <Heading size='lg'>SunsetInfo カード</Heading>
-        <CurrentLocation />
-        <CurrentTime />
-        <SunTime />
-      </Box>
-    </Box>
+    <VStack
+      w={{ base: 'full' }}
+      minW={{ md: '400px' }}
+      maxW={{ md: '540px' }}
+      gap='2'
+      p={{ base: 4, md: 6 }}
+      shadow='lg'
+      bgColor='gray.100'
+    >
+      <CurrentLocation />
+      <CurrentTime />
+      <SunTime />
+    </VStack>
   );
 };
 
