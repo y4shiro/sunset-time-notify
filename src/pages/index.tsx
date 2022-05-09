@@ -24,6 +24,9 @@ const Home: NextPage = () => {
           type: 'website',
           image: `${url}${ogpImgPath}`,
         }}
+        twitter={{
+          card: 'summary',
+        }}
       />
       <MainContent />
     </>
