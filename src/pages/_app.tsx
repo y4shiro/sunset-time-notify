@@ -4,11 +4,13 @@ import { RecoilRoot } from 'recoil';
 
 import Layout from '../components/Layout';
 import { theme } from '../utils/theme';
+import GoogleAnalytics from '../components/GoogleAnalytics';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ChakraProvider theme={theme}>
+        <GoogleAnalytics />
         <Layout>
           <Component {...pageProps} />
         </Layout>
