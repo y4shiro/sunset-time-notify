@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
 import { GA_ID, existsGaId } from '../lib/gtag';
 
@@ -6,22 +7,7 @@ const Document = () => {
   return (
     <Html lang='ja'>
       <Head>
-        {existsGaId && (
-          <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${GA_ID}', {
-                    page_path: window.location.pathname,
-                  });`,
-              }}
-            />
-          </>
-        )}
+        <GoogleAnalytics />
       </Head>
 
       <body>
@@ -31,5 +17,27 @@ const Document = () => {
     </Html>
   );
 };
+
+const GoogleAnalytics = () => (
+  <>
+    {existsGaId && (
+      <>
+        <Script
+          defer
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy='afterInteractive'
+        />
+        <Script id='ga' defer strategy='afterInteractive'>
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+          `}
+        </Script>
+      </>
+    )}
+  </>
+);
 
 export default Document;
