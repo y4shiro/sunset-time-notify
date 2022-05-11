@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import format from 'date-fns/format';
 
+import { useRecoilState } from 'recoil';
+import { currentTimeState, currentTimeStringState } from './../stores/currentTimeState';
+
 export const useCurrentTime = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [currentTimeString, setCurrentTimeString] = useState('');
+  const [currentTime, setCurrentTime] = useRecoilState(currentTimeState);
+  const [currentTimeString, setCurrentTimeString] = useRecoilState(currentTimeStringState);
 
   const updateTime = (currentDate: Date = new Date()) => {
     setCurrentTime(currentDate);
