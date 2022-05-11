@@ -1,5 +1,6 @@
 import { cleanup } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks';
+import { RecoilRoot } from 'recoil';
 import { useCurrentTime } from './useCurrentTime';
 
 const mockDate = new Date('2022-01-01T12:00:00');
@@ -14,14 +15,18 @@ afterEach(() => jest.useRealTimers());
 
 describe('useCurrentSunTIme', () => {
   test('useState の初期値がそれぞれ正しいことを確認', () => {
-    const { result } = renderHook(() => useCurrentTime());
+    const { result } = renderHook(() => useCurrentTime(), {
+      wrapper: RecoilRoot,
+    });
 
     expect(result.current.currentTime).toEqual(mockDate);
     expect(result.current.currentTimeString).toBe('2022年01月01日 12:00:00');
   });
 
   test('カウント開始から5秒後に想定される時刻に更新されている', () => {
-    const { result } = renderHook(() => useCurrentTime());
+    const { result } = renderHook(() => useCurrentTime(), {
+      wrapper: RecoilRoot,
+    });
 
     expect(result.current.currentTime).toEqual(mockDate);
     expect(result.current.currentTimeString).toBe('2022年01月01日 12:00:00');
