@@ -6,8 +6,8 @@ import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import { useCalcSunTime } from '../../hooks/useCalcSunTime';
 
 export const SunTime: VFC = () => {
-  const { latitude, longitude, altitude, isLoading } = useCurrentPosition();
-  const { sunriseTime, sunsetTime, isValid } = useCalcSunTime(latitude, longitude, altitude);
+  const { isLoading } = useCurrentPosition();
+  const { sunriseTime, sunsetTime, isValid } = useCalcSunTime();
 
   return (
     <SimpleGrid w='full' columns={2} gap='4'>
