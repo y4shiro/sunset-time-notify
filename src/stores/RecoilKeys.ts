@@ -8,6 +8,9 @@ export enum RecoilAtomKeys {
   IS_MOVING_MAP_STATE = 'isMovingMapState',
   CURRENT_TIME_STATE = 'currentTimeState',
   CURRENT_TIME_STRING_STATE = 'currentTimeStringState',
+  SUNRISE_TIME_STATE = 'sunriseTimeState',
+  SUNSET_TIME_STATE = 'sunsetTimeState',
+  SUNTIME_ISVALID_STATE = 'suntimeIsvalidState',
 }
 
 export enum RecoilSelectorKeys {
