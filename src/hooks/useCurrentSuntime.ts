@@ -1,20 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { format, isValid } from 'date-fns';
 
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { altitudeState, latitudeState, longitudeState } from '../stores/currentPositionState';
-import { sunriseTimeState, sunsetTimeState, suntimeIsvalidState } from '../stores/sunTimeState';
+import { suntimeIsvalidState } from '../stores/sunTimeState';
 
 import { useCalcSuntime } from './useCalcSuntime';
 
 export const useCurrentSuntime = (
   date: Date = new Date(),
-): { sunriseTime: string; sunsetTime: string; isValid: boolean } => {
+): {
+  sunriseTime: Date;
+  sunsetTime: Date;
+  sunriseTimeString: string;
+  sunsetTimeString: string;
+  isValid: boolean;
+} => {
   const latitude = useRecoilValue(latitudeState); // Latitude 緯度
   const longitude = useRecoilValue(longitudeState); // Longitude 経度
   const altitude = useRecoilValue(altitudeState); // Altitude 高度
-  const [sunriseTime, setSunriseTime] = useRecoilState(sunriseTimeState);
-  const [sunsetTime, setSunsetTime] = useRecoilState(sunsetTimeState);
+
+  const [sunriseTimeString, setSunriseTimeString] = useState('');
+  const [sunsetTimeString, setSunsetTimeString] = useState('');
   const [suntimeIsvalid, setSuntimeIsvalid] = useRecoilState(suntimeIsvalidState);
 
   const { sunrise, sunset } = useCalcSuntime(date, latitude, longitude, altitude);
@@ -22,8 +29,8 @@ export const useCurrentSuntime = (
   useEffect(() => {
     // 引数で渡ってきた date が Invalid Date の場合
     if (!isValid(date)) {
-      setSunriseTime('不正な日付です');
-      setSunsetTime('不正な日付です');
+      setSunriseTimeString('不正な日付です');
+      setSunsetTimeString('不正な日付です');
       setSuntimeIsvalid(false);
       return;
     }
@@ -31,17 +38,23 @@ export const useCurrentSuntime = (
     // SunCalc で算出した日時が Invalide Date だった場合
     // 基本的に白夜・極夜の場合が多いが、他のパターンが漏れている可能性もある
     if (!isValid(sunrise)) {
-      setSunriseTime('白夜または極夜');
-      setSunsetTime('白夜または極夜');
+      setSunriseTimeString('白夜または極夜');
+      setSunsetTimeString('白夜または極夜');
       setSuntimeIsvalid(false);
       return;
     }
 
     // 正常に日時が算出できた場合は、日の出日の入時刻を文字列で返す
-    setSunriseTime(format(sunrise, 'HH:mm:ss'));
-    setSunsetTime(format(sunset, 'HH:mm:ss'));
+    setSunriseTimeString(format(sunrise, 'HH:mm:ss'));
+    setSunsetTimeString(format(sunset, 'HH:mm:ss'));
     setSuntimeIsvalid(true);
-  }, [date, latitude, longitude, altitude]);
+  }, [date, sunrise, sunset, setSuntimeIsvalid]);
 
-  return { sunriseTime, sunsetTime, isValid: suntimeIsvalid };
+  return {
+    sunriseTime: sunrise,
+    sunsetTime: sunset,
+    sunriseTimeString,
+    sunsetTimeString,
+    isValid: suntimeIsvalid,
+  };
 };

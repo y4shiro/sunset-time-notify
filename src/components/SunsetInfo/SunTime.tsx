@@ -7,7 +7,7 @@ import { useCurrentSuntime } from '../../hooks/useCurrentSuntime';
 
 export const SunTime: VFC = () => {
   const { isLoading } = useCurrentPosition();
-  const { sunriseTime, sunsetTime, isValid } = useCurrentSuntime();
+  const { sunriseTimeString, sunsetTimeString, isValid } = useCurrentSuntime();
 
   return (
     <SimpleGrid w='full' columns={2} gap='4'>
@@ -20,7 +20,7 @@ export const SunTime: VFC = () => {
         bgColor='#FFBF15'
       >
         <FiSunrise size='36' color='white' />
-        {SunTimeText(isLoading, isValid, sunriseTime)}
+        {SunTimeText(isLoading, isValid, sunriseTimeString)}
       </HStack>
       <HStack
         w='full'
@@ -31,7 +31,7 @@ export const SunTime: VFC = () => {
         bgColor='#142C8C'
       >
         <FiSunset size='36' color='white' />
-        {SunTimeText(isLoading, isValid, sunsetTime)}
+        {SunTimeText(isLoading, isValid, sunsetTimeString)}
       </HStack>
     </SimpleGrid>
   );

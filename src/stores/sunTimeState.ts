@@ -2,14 +2,14 @@ import { atom } from 'recoil';
 import { RecoilAtomKeys } from './RecoilKeys';
 
 // Atom
-export const sunriseTimeState = atom<string>({
+export const sunriseTimeState = atom<Date>({
   key: RecoilAtomKeys.SUNRISE_TIME_STATE,
-  default: '',
+  default: new Date(),
 });
 
-export const sunsetTimeState = atom<string>({
+export const sunsetTimeState = atom<Date>({
   key: RecoilAtomKeys.SUNSET_TIME_STATE,
-  default: '',
+  default: new Date(),
 });
 
 export const suntimeIsvalidState = atom<boolean>({

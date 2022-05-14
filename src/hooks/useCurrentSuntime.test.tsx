@@ -12,8 +12,8 @@ describe('useCurrentSuntime', () => {
       wrapper: RecoilRoot,
     });
 
-    expect(result.current.sunriseTime).toBe('06:51:50');
-    expect(result.current.sunsetTime).toBe('16:38:54');
+    expect(result.current.sunriseTimeString).toBe('06:51:50');
+    expect(result.current.sunsetTimeString).toBe('16:38:54');
     expect(result.current.isValid).toBeTruthy();
   });
 
@@ -22,8 +22,8 @@ describe('useCurrentSuntime', () => {
       wrapper: RecoilRoot,
     });
 
-    expect(result.current.sunriseTime).toBe('不正な日付です');
-    expect(result.current.sunsetTime).toBe('不正な日付です');
+    expect(result.current.sunriseTimeString).toBe('不正な日付です');
+    expect(result.current.sunsetTimeString).toBe('不正な日付です');
     expect(result.current.isValid).toBeFalsy();
   });
 
@@ -42,8 +42,8 @@ describe('useCurrentSuntime', () => {
       ),
     });
 
-    expect(result.current.sunriseTime).toBe('白夜または極夜');
-    expect(result.current.sunsetTime).toBe('白夜または極夜');
+    expect(result.current.sunriseTimeString).toBe('白夜または極夜');
+    expect(result.current.sunsetTimeString).toBe('白夜または極夜');
     expect(result.current.isValid).toBeFalsy();
   });
 });
