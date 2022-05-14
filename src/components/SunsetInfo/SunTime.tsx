@@ -3,11 +3,11 @@ import { SimpleGrid, HStack, Text, TextProps } from '@chakra-ui/react';
 import { FiSunrise, FiSunset } from 'react-icons/fi';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
-import { useCalcSunTime } from '../../hooks/useCalcSunTime';
+import { useCurrentSuntime } from '../../hooks/useCurrentSuntime';
 
 export const SunTime: VFC = () => {
   const { isLoading } = useCurrentPosition();
-  const { sunriseTime, sunsetTime, isValid } = useCalcSunTime();
+  const { sunriseTime, sunsetTime, isValid } = useCurrentSuntime();
 
   return (
     <SimpleGrid w='full' columns={2} gap='4'>

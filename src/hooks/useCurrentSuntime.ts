@@ -4,9 +4,9 @@ import { format, isValid } from 'date-fns';
 
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { altitudeState, latitudeState, longitudeState } from '../stores/currentPositionState';
-import { sunriseTimeState, sunsetTimeState, suntimeIsvalidState } from './../stores/sunTimeState';
+import { sunriseTimeState, sunsetTimeState, suntimeIsvalidState } from '../stores/sunTimeState';
 
-export const useCalcSunTime = (
+export const useCurrentSuntime = (
   date: Date = new Date(),
 ): { sunriseTime: string; sunsetTime: string; isValid: boolean } => {
   const latitude = useRecoilValue(latitudeState); // Latitude 緯度

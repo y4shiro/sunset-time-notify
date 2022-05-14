@@ -2,13 +2,13 @@ import { cleanup } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { RecoilRoot } from 'recoil';
 
-import { useCalcSunTime } from './useCalcSunTime';
+import { useCurrentSuntime } from './useCurrentSuntime';
 import { altitudeState, longitudeState, latitudeState } from '../stores/currentPositionState';
 
 beforeEach(() => cleanup());
-describe('useCurrentSunTIme', () => {
+describe('useCurrentSuntime', () => {
   test('任意の日付を渡すと、それに対応した日の出日の入時刻の文字列を返す', () => {
-    const { result } = renderHook(() => useCalcSunTime(new Date('2022-01-01T12:00:00')), {
+    const { result } = renderHook(() => useCurrentSuntime(new Date('2022-01-01T12:00:00')), {
       wrapper: RecoilRoot,
     });
 
@@ -18,7 +18,7 @@ describe('useCurrentSunTIme', () => {
   });
 
   test('引数で渡ってきた date の値が "Invalid Date" の場合、"不正な日付です" という文字列を返す', () => {
-    const { result } = renderHook(() => useCalcSunTime(new Date('2022-01-00T12:00:00')), {
+    const { result } = renderHook(() => useCurrentSuntime(new Date('2022-01-00T12:00:00')), {
       wrapper: RecoilRoot,
     });
 
@@ -28,7 +28,7 @@ describe('useCurrentSunTIme', () => {
   });
 
   test('SunCalc で算出した date の値が "Invalid Date" の場合、"白夜または極夜です" という文字列を返す', () => {
-    const { result } = renderHook(() => useCalcSunTime(new Date('2022-01-01T12:00:00')), {
+    const { result } = renderHook(() => useCurrentSuntime(new Date('2022-01-01T12:00:00')), {
       wrapper: ({ children }) => (
         <RecoilRoot
           initializeState={({ set }) => {
