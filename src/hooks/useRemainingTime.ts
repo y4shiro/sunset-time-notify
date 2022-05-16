@@ -6,7 +6,7 @@ import { altitudeState, latitudeState, longitudeState } from '../stores/currentP
 import { suntimeIsvalidState } from '../stores/sunTimeState';
 
 import { calcSuntime } from '../lib/calcSuntime';
-import { useCurrentTime } from './useCurrentTime';
+import { currentTimeState } from './../stores/currentTimeState';
 
 type isTime = 'beforeSunrise' | 'beforeSunset' | 'nextSunrise';
 
@@ -16,7 +16,7 @@ export const useRemainingTime = (): { remainingTime: string; isTime: isTime } =>
   const altitude = useRecoilValue(altitudeState); // Altitude 高度
 
   const today = new Date();
-  const { currentTime } = useCurrentTime();
+  const currentTime = useRecoilValue(currentTimeState);
 
   const [remainingTime, setRemainingTime] = useState<string>('');
   const [isTime, setIsTime] = useState<isTime>('beforeSunrise');
@@ -45,7 +45,7 @@ export const useRemainingTime = (): { remainingTime: string; isTime: isTime } =>
       setRemainingTime(formatStringTime(remain));
       setIsTime('nextSunrise');
     }
-  }, [currentTime]);
+  }, [currentTime, latitude, longitude]);
 
   return { remainingTime, isTime };
 };
