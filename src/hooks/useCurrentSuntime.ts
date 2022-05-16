@@ -5,7 +5,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { altitudeState, latitudeState, longitudeState } from '../stores/currentPositionState';
 import { suntimeIsvalidState } from '../stores/sunTimeState';
 
-import { useCalcSuntime } from './useCalcSuntime';
+import { calcSuntime } from '../lib/calcSuntime';
 
 export const useCurrentSuntime = (
   date: Date = new Date(),
@@ -24,7 +24,7 @@ export const useCurrentSuntime = (
   const [sunsetTimeString, setSunsetTimeString] = useState('');
   const [suntimeIsvalid, setSuntimeIsvalid] = useRecoilState(suntimeIsvalidState);
 
-  const { sunrise, sunset } = useCalcSuntime(date, latitude, longitude, altitude);
+  const { sunrise, sunset } = calcSuntime(date, latitude, longitude, altitude);
 
   useEffect(() => {
     // 引数で渡ってきた date が Invalid Date の場合

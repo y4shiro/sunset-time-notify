@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { altitudeState, latitudeState, longitudeState } from '../stores/currentPositionState';
 import { suntimeIsvalidState } from '../stores/sunTimeState';
 
-import { useCalcSuntime } from './useCalcSuntime';
+import { calcSuntime } from '../lib/calcSuntime';
 import { useCurrentTime } from './useCurrentTime';
 
 type isTime = 'beforeSunrise' | 'beforeSunset' | 'nextSunrise';
@@ -21,8 +21,8 @@ export const useRemainingTime = (): { remainingTime: string; isTime: isTime } =>
   const [remainingTime, setRemainingTime] = useState<string>('');
   const [isTime, setIsTime] = useState<isTime>('beforeSunrise');
 
-  const { sunrise, sunset } = useCalcSuntime(today, latitude, longitude, altitude);
-  const { sunrise: nextSunrise } = useCalcSuntime(nextDay(today, 1), latitude, longitude, altitude);
+  const { sunrise, sunset } = calcSuntime(today, latitude, longitude, altitude);
+  const { sunrise: nextSunrise } = calcSuntime(nextDay(today, 1), latitude, longitude, altitude);
 
   const formatStringTime = (remain: Duration) => {
     const hours = String(remain.hours).padStart(2, '0');

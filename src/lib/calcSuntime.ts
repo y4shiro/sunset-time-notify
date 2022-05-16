@@ -1,6 +1,6 @@
 import SunCalc from 'suncalc';
 
-export const useCalcSuntime = (
+export const calcSuntime = (
   date: Date,
   latitude: number,
   longitude: number,
