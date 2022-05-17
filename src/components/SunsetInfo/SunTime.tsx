@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 import { SimpleGrid, HStack, Text, TextProps } from '@chakra-ui/react';
-import { FiSunrise, FiSunset } from 'react-icons/fi';
+import { RiSunFill, RiMoonClearFill } from 'react-icons/ri';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import { useCurrentSuntime } from '../../hooks/useCurrentSuntime';
@@ -19,7 +19,7 @@ export const SunTime: VFC = () => {
         shadow='lg'
         bgColor='#FFBF15'
       >
-        <FiSunrise size='36' color='white' />
+        <RiSunFill size='32' color='white' />
         {SunTimeText(isLoading, isValid, sunriseTimeString)}
       </HStack>
       <HStack
@@ -30,7 +30,7 @@ export const SunTime: VFC = () => {
         shadow='lg'
         bgColor='#142C8C'
       >
-        <FiSunset size='36' color='white' />
+        <RiMoonClearFill size='32' color='white' />
         {SunTimeText(isLoading, isValid, sunsetTimeString)}
       </HStack>
     </SimpleGrid>
@@ -44,13 +44,13 @@ const SunTimeText = (isLoading: boolean, isValid: boolean, text: string): TextPr
 };
 
 const LoadingText: VFC<TextProps> = () => (
-  <Text textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold'>
+  <Text textColor='white' fontSize={{ base: 22, md: 26 }} fontWeight='bold'>
     読込中
   </Text>
 );
 
 const ValidText: VFC<TextProps> = (props) => (
-  <Text textColor='white' fontSize={{ base: 24, md: 26 }} fontWeight='bold' {...props} />
+  <Text textColor='white' fontSize={{ base: 22, md: 26 }} fontWeight='bold' {...props} />
 );
 const InValidText: VFC<TextProps> = (props) => (
   <Text textColor='white' fontSize={{ base: 16, md: 20 }} fontWeight='bold' {...props} />
