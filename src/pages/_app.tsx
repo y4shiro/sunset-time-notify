@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ChakraProvider theme={theme}>
-        <GoogleAnalytics />
+        {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
         <Layout>
           <Component {...pageProps} />
         </Layout>

@@ -4,6 +4,7 @@ import { Box, VStack } from '@chakra-ui/react';
 import { CurrentLocation } from './CurrentLocation';
 import { CurrentTime } from './CurrentTime';
 import { SunTime } from './SunTime';
+import { RemainingTime } from './RemainingTime';
 
 const SunsetInfo: VFC = () => {
   return (
@@ -18,6 +19,7 @@ const SunsetInfo: VFC = () => {
     >
       <CurrentLocation />
       <CurrentTime />
+      <RemainingTime />
       <SunTime />
     </VStack>
   );

@@ -1,11 +1,17 @@
-import { VFC } from 'react';
-import { Box, HStack, Text } from '@chakra-ui/react';
+import React, { useEffect, useState, VFC } from 'react';
+import { HStack, Text } from '@chakra-ui/react';
 import { FaClock } from 'react-icons/fa';
+import { format } from 'date-fns';
 
 import { useCurrentTime } from '../../hooks/useCurrentTime';
 
 const CurrentTime: VFC = () => {
-  const { currentTimeString } = useCurrentTime();
+  const { currentTime } = useCurrentTime();
+  const [currentTimeString, setCurrentTimeString] = useState('');
+
+  useEffect(() => {
+    setCurrentTimeString(format(currentTime, 'yyyy/MM/dd HH:mm:ss'));
+  }, [currentTime]);
 
   return (
     <HStack
