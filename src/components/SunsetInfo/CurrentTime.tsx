@@ -10,7 +10,7 @@ const CurrentTime: VFC = () => {
   const [currentTimeString, setCurrentTimeString] = useState('');
 
   useEffect(() => {
-    setCurrentTimeString(format(currentTime, 'yyyy年MM月dd日 HH:mm:ss'));
+    setCurrentTimeString(format(currentTime, 'yyyy/MM/dd HH:mm:ss'));
   }, [currentTime]);
 
   return (
