@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, VFC } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -15,6 +15,14 @@ const MapboxGl: VFC = () => {
   const { viewState, setViewState, isMovingMap, setIsMovingMapToTrue, setIsMovingMapToFalse } =
     useReactMapState();
 
+  const getElevation = () => {
+    console.log(
+      mapInstance?.queryTerrainElevation([viewState.longitude, viewState.latitude], {
+        exaggerated: false,
+      }),
+    );
+  };
+
   useEffect(() => {
     if (!mapContainer.current) return;
     const map = new mapboxgl.Map({
@@ -24,6 +32,7 @@ const MapboxGl: VFC = () => {
       zoom: 9,
     });
     map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+
     setMapInstance(map);
   }, []);
 
@@ -41,6 +50,15 @@ const MapboxGl: VFC = () => {
     });
     mapInstance.on('moveend', () => {
       setIsMovingMapToFalse();
+    });
+    mapInstance.on('load', () => {
+      mapInstance.addSource('mapbox-dem', {
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        tileSize: 512,
+        maxzoom: 14,
+      });
+      mapInstance.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
     });
   }, [mapInstance, setViewState]);
 
@@ -63,6 +81,7 @@ const MapboxGl: VFC = () => {
       </Box>
       <Box w='100%' h='100%'>
         <div style={{ height: '100%' }} ref={mapContainer} />
+        <Button onClick={getElevation}>Get Elevation</Button>
       </Box>
     </Box>
   );
