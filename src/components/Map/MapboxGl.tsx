@@ -21,8 +21,9 @@ const MapboxGl: VFC = () => {
       container: mapContainer.current,
       style: 'mapbox://styles/y4shiro/cl279tgti00jb15qjk6klkzrh',
       center: [viewState.longitude, viewState.latitude],
-      zoom: 8,
+      zoom: 9,
     });
+    map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
     setMapInstance(map);
   }, []);
 
@@ -60,7 +61,9 @@ const MapboxGl: VFC = () => {
         緯度: {viewState.latitude.toFixed(4)} | 経度: {viewState.longitude.toFixed(4)} | 移動中:
         {`${isMovingMap}`}
       </Box>
-      <div style={{ height: '100%' }} ref={mapContainer} />
+      <Box w='100%' h='100%'>
+        <div style={{ height: '100%' }} ref={mapContainer} />
+      </Box>
     </Box>
   );
 };
