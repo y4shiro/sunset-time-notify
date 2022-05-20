@@ -7,8 +7,8 @@ import MapboxGl from './MapboxGl';
 const Map: VFC = () => {
   return (
     <Box w='100%' h={{ base: '50vh', md: '80vh' }}>
-      {/* <ReactMapGl /> */}
-      <MapboxGl />
+      <ReactMapGl />
+      {/* <MapboxGl /> */}
     </Box>
   );
 };
