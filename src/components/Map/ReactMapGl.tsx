@@ -1,15 +1,48 @@
-import { VFC } from 'react';
+import { useCallback, useEffect, useState, VFC } from 'react';
 import { Box } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
-import Map, { NavigationControl, GeolocateControl, Marker } from 'react-map-gl';
+import Map, { NavigationControl, GeolocateControl, Marker, MapRef } from 'react-map-gl';
+import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { useReactMapState } from '../../hooks/useReactMapState';
 
 const ReactMapGl: VFC = () => {
-  const { viewState, setViewState, isMovingMap, setIsMovingMapToTrue, setIsMovingMapToFalse } =
-    useReactMapState();
+  const [map, setMap] = useState<mapboxgl.Map>();
+  const {
+    viewState,
+    setViewState,
+    setAltitude,
+    isMovingMap,
+    setIsMovingMapToTrue,
+    setIsMovingMapToFalse,
+  } = useReactMapState();
+
+  const mapRef = useCallback((ref: MapRef) => {
+    if (!ref) return;
+    ref.on('load', () => {
+      ref.getMap().addSource('mapbox-dem', {
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        tileSize: 512,
+        maxzoom: 14,
+      });
+      ref.getMap().setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+      setMap(ref.getMap());
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!map) return;
+    const elevation = map.queryTerrainElevation([viewState.longitude, viewState.latitude], {
+      exaggerated: false,
+    });
+
+    if (elevation !== null) {
+      setAltitude(elevation);
+    }
+  }, [map, viewState.latitude, viewState.longitude]);
 
   return (
     <Box w='100%' h='100%'>
@@ -30,6 +63,7 @@ const ReactMapGl: VFC = () => {
       </Box>
       <Map
         {...viewState}
+        ref={mapRef}
         onMove={(e) => setViewState(e.viewState)}
         onMoveStart={() => setIsMovingMapToTrue()}
         onMoveEnd={() => setIsMovingMapToFalse()}

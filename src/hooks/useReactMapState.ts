@@ -1,8 +1,13 @@
 import { useRecoilState } from 'recoil';
-import { isMovingMapState, mapViewSelector } from '../stores/currentPositionState';
+import {
+  altitudeSelector,
+  isMovingMapState,
+  mapViewSelector,
+} from '../stores/currentPositionState';
 
 export const useReactMapState = () => {
   const [viewState, setViewState] = useRecoilState(mapViewSelector);
+  const [altitude, setAltitude] = useRecoilState(altitudeSelector);
   const [isMovingMap, setIsMovingMap] = useRecoilState(isMovingMapState);
 
   const setIsMovingMapToTrue = () => setIsMovingMap(true);
@@ -11,6 +16,8 @@ export const useReactMapState = () => {
   return {
     viewState,
     setViewState,
+    altitude,
+    setAltitude,
     isMovingMap,
     setIsMovingMapToTrue,
     setIsMovingMapToFalse,

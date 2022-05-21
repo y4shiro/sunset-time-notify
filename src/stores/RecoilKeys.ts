@@ -14,5 +14,6 @@ export enum RecoilAtomKeys {
 
 export enum RecoilSelectorKeys {
   MAP_VIEW = 'mapView',
+  ALTITUDE_SELECTOR = 'altitudeSelector',
   IS_MOVING_MAP = 'isMovingMap',
 }

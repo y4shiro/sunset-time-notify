@@ -20,7 +20,6 @@ describe('useCurrentSunTIme', () => {
     });
 
     expect(result.current.currentTime).toEqual(mockDate);
-    expect(result.current.currentTimeString).toBe('2022年01月01日 12:00:00');
   });
 
   test('カウント開始から5秒後に想定される時刻に更新されている', () => {
@@ -29,7 +28,6 @@ describe('useCurrentSunTIme', () => {
     });
 
     expect(result.current.currentTime).toEqual(mockDate);
-    expect(result.current.currentTimeString).toBe('2022年01月01日 12:00:00');
 
     act(() => {
       jest.advanceTimersByTime(5000);
@@ -37,6 +35,5 @@ describe('useCurrentSunTIme', () => {
 
     const afterDate = new Date('2022-01-01T12:00:05');
     expect(result.current.currentTime).toEqual(afterDate);
-    expect(result.current.currentTimeString).toBe('2022年01月01日 12:00:05');
   });
 });

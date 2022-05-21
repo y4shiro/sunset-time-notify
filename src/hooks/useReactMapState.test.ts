@@ -13,6 +13,7 @@ describe('useReactMapState', () => {
     });
 
     expect(result.current.viewState.latitude).toBe(DEFAULT_POSITION.latitude);
+    expect(result.current.altitude).toBe(DEFAULT_POSITION.altitude);
     expect(result.current.isMovingMap).toBeFalsy();
   });
 });
