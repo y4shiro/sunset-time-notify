@@ -10,8 +10,14 @@ import { useReactMapState } from '../../hooks/useReactMapState';
 
 const ReactMapGl: VFC = () => {
   const [map, setMap] = useState<mapboxgl.Map>();
-  const { viewState, setViewState, isMovingMap, setIsMovingMapToTrue, setIsMovingMapToFalse } =
-    useReactMapState();
+  const {
+    viewState,
+    setViewState,
+    setAltitude,
+    isMovingMap,
+    setIsMovingMapToTrue,
+    setIsMovingMapToFalse,
+  } = useReactMapState();
 
   const mapRef = useCallback((ref: MapRef) => {
     if (!ref) return;
@@ -32,7 +38,10 @@ const ReactMapGl: VFC = () => {
     const elevation = map.queryTerrainElevation([viewState.longitude, viewState.latitude], {
       exaggerated: false,
     });
-    console.log(elevation);
+
+    if (elevation !== null) {
+      setAltitude(elevation);
+    }
   }, [map, viewState.latitude, viewState.longitude]);
 
   return (

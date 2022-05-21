@@ -42,6 +42,18 @@ export const isMovingMapState = atom<IsMovingMap>({
 });
 
 // Selector
+export const altitudeSelector = selector<number>({
+  key: RecoilSelectorKeys.ALTITUDE_SELECTOR,
+  get: ({ get }) => {
+    const alt = get(altitudeState);
+    return alt;
+  },
+  set: ({ set }, newValue) => {
+    if (newValue instanceof DefaultValue) return;
+    set(altitudeState, newValue);
+  },
+});
+
 export const mapViewSelector = selector<MapView>({
   key: RecoilSelectorKeys.MAP_VIEW,
   get: ({ get }) => {
