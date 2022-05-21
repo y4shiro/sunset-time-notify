@@ -1,4 +1,3 @@
-import { altitudeState } from './../stores/currentPositionState';
 import { useRecoilState } from 'recoil';
 import {
   altitudeSelector,
