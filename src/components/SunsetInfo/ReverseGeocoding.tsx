@@ -8,9 +8,17 @@ const ReverseGeocoding: VFC = () => {
   const [placeName, setPlaceName] = useState('');
   const { latitude, longitude } = useCurrentPosition();
 
+  const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
+
   const getPlaceName = () => {
-    console.log('Get PlaceName');
-    setPlaceName('地名取得したよ');
+    const fetchUrl = `https://api.mapbox.com/search/v1/reverse/${longitude},${latitude}?language=ja&access_token=${mapboxAccessToken}&types=street`;
+    fetch(fetchUrl, { method: 'GET' })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const address = data.features[0].properties.place_name;
+        setPlaceName(address);
+      });
   };
 
   return (
