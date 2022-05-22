@@ -5,6 +5,7 @@ import { CurrentLocation } from './CurrentLocation';
 import { CurrentTime } from './CurrentTime';
 import { SunTime } from './SunTime';
 import { RemainingTime } from './RemainingTime';
+import { ReverseGeocoding } from './ReverseGeocoding';
 
 const SunsetInfo: VFC = () => {
   return (
@@ -17,6 +18,7 @@ const SunsetInfo: VFC = () => {
       shadow='lg'
       bgColor='gray.100'
     >
+      <ReverseGeocoding />
       <CurrentLocation />
       <CurrentTime />
       <RemainingTime />
