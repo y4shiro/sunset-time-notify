@@ -11,12 +11,13 @@ const ReverseGeocoding: VFC = () => {
   const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
 
   const getPlaceName = () => {
-    const fetchUrl = `https://api.mapbox.com/search/v1/reverse/${longitude},${latitude}?language=ja&access_token=${mapboxAccessToken}&types=street`;
+    // const fetchUrl = `https://api.mapbox.com/search/v1/reverse/${longitude},${latitude}?language=ja&access_token=${mapboxAccessToken}&types=oaza`;
+    const fetchUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxAccessToken}&language=ja&types=country,region,locality,place`;
     fetch(fetchUrl, { method: 'GET' })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const address = data.features[0].properties.place_name;
+        const address = data.features[0].place_name;
         setPlaceName(address);
       });
   };
