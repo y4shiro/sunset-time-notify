@@ -1,15 +1,17 @@
-import React, { VFC } from 'react';
+import React, { useEffect, VFC } from 'react';
 import { useQuery } from 'react-query';
 
 import { Button, HStack, Text } from '@chakra-ui/react';
 import { FaClock } from 'react-icons/fa';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
+import { useReactMapState } from '../../hooks/useReactMapState';
 
 const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
 
 const ReverseGeocoding: VFC = () => {
   const { latitude, longitude } = useCurrentPosition();
+  const { isMovingMap } = useReactMapState();
 
   const fetchPlaceName = async () => {
     const fetchUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxAccessToken}&language=ja&types=country,region,locality,place`;
@@ -19,6 +21,11 @@ const ReverseGeocoding: VFC = () => {
   };
 
   const { data: placeName, isLoading, isFetching, refetch } = useQuery('placeName', fetchPlaceName);
+
+  useEffect(() => {
+    if (isMovingMap) return;
+    refetch();
+  }, [isMovingMap, refetch]);
 
   return (
     <HStack
