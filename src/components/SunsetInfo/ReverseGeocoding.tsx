@@ -20,10 +20,11 @@ const ReverseGeocoding: VFC = () => {
     return placeName;
   };
 
-  const { data: placeName, isLoading, isFetching, refetch } = useQuery('placeName', fetchPlaceName);
+  const { data: placeName, isFetching, isStale, refetch } = useQuery('placeName', fetchPlaceName);
 
   useEffect(() => {
-    if (isMovingMap) return;
+    if (isMovingMap || isStale) return;
+    console.log('refetch');
     refetch();
   }, [isMovingMap, refetch]);
 
@@ -40,9 +41,7 @@ const ReverseGeocoding: VFC = () => {
     >
       <FaClock fontSize='24' />
       <HStack w='full' bgColor='blue.100' justify='space-between'>
-        <Text fontSize={{ base: 16, md: 20 }}>
-          {isLoading || isFetching ? 'Loading...' : placeName}
-        </Text>
+        <Text fontSize={{ base: 16, md: 20 }}>{isFetching ? 'Loading...' : placeName}</Text>
         <Button onClick={() => refetch()}>再読み込み</Button>
       </HStack>
     </HStack>
