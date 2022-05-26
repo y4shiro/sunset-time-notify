@@ -10,6 +10,7 @@ import { useReactMapState } from '../../hooks/useReactMapState';
 const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
 
 const ReverseGeocoding: VFC = () => {
+  const [isFetchEnabled, setIsFetchEnabled] = useState<boolean>(true);
   const [placeName, setPlaceName] = useState('');
   const { latitude, longitude } = useCurrentPosition();
   const { isMovingMap } = useReactMapState();
@@ -25,8 +26,14 @@ const ReverseGeocoding: VFC = () => {
 
   useEffect(() => {
     if (isMovingMap || isStale) return;
-    console.log('refetch');
-    refetch();
+    if (isFetchEnabled) {
+      console.log('refetch');
+      refetch();
+      setIsFetchEnabled(false);
+      setTimeout(() => {
+        setIsFetchEnabled(true);
+      }, 1000);
+    }
   }, [isMovingMap, refetch]);
 
   useEffect(() => {
