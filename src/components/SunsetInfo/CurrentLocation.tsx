@@ -1,7 +1,8 @@
 import { VFC } from 'react';
-import { Box, Divider, HStack, SimpleGrid, Text, TextProps, VStack } from '@chakra-ui/react';
+import { Box, Divider, HStack, Text, TextProps, VStack } from '@chakra-ui/react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
+import { ReverseGeocoding } from './ReverseGeocoding';
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
 export const CurrentLocation: VFC = () => {
@@ -11,7 +12,6 @@ export const CurrentLocation: VFC = () => {
     <HStack
       w='full'
       p='4'
-      textAlign='center'
       borderRadius='lg'
       border='1px'
       borderColor='gray.200'
@@ -22,25 +22,29 @@ export const CurrentLocation: VFC = () => {
       {locationError ? (
         <Text fontSize='20'>位置情報の取得に失敗しました</Text>
       ) : (
-        <HStack w='full' justify='space-evenly'>
-          {/** 緯度経度が 0 度の場合は取得中と表示する。レアケースだが、緯度経度 0 の地点は表示できないので、この辺厳密にする場合は取得中ステータスで管理する*/}
-          <Box>
-            <TitleText>緯度</TitleText>
-            <ContentText>{latitude.toFixed(4) || '取得中'}</ContentText>
-          </Box>
-          <Divider height='40px' orientation='vertical' borderColor='gray.300' />
+        <VStack w='full'>
+          <ReverseGeocoding />
+          <Divider />
+          <HStack w='full' textAlign='center' justify='space-evenly'>
+            {/** 緯度経度が 0 度の場合は取得中と表示する。レアケースだが、緯度経度 0 の地点は表示できないので、この辺厳密にする場合は取得中ステータスで管理する*/}
+            <Box>
+              <TitleText>緯度</TitleText>
+              <ContentText>{latitude.toFixed(4) || '取得中'}</ContentText>
+            </Box>
+            <Divider height='40px' orientation='vertical' borderColor='gray.300' />
 
-          <Box>
-            <TitleText>経度</TitleText>
-            <ContentText>{longitude.toFixed(4) || '取得中'}</ContentText>
-          </Box>
-          <Divider height='40px' orientation='vertical' borderColor='gray.300' />
+            <Box>
+              <TitleText>経度</TitleText>
+              <ContentText>{longitude.toFixed(4) || '取得中'}</ContentText>
+            </Box>
+            <Divider height='40px' orientation='vertical' borderColor='gray.300' />
 
-          <Box>
-            <TitleText>高度</TitleText>
-            <ContentText>{altitude ? altitude.toFixed(4) : '未取得'}</ContentText>
-          </Box>
-        </HStack>
+            <Box>
+              <TitleText>高度</TitleText>
+              <ContentText>{altitude ? altitude.toFixed(4) : '未取得'}</ContentText>
+            </Box>
+          </HStack>
+        </VStack>
       )}
     </HStack>
   );

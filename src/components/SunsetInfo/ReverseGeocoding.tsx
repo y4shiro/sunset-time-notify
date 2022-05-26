@@ -1,8 +1,6 @@
-import React, { useEffect, useState, VFC } from 'react';
+import { useEffect, useState, VFC } from 'react';
 import { useQuery } from 'react-query';
-
-import { Button, HStack, Text } from '@chakra-ui/react';
-import { FaClock } from 'react-icons/fa';
+import { Text } from '@chakra-ui/react';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import { useReactMapState } from '../../hooks/useReactMapState';
@@ -43,22 +41,9 @@ const ReverseGeocoding: VFC = () => {
   }, [data, isFetching, isError]);
 
   return (
-    <HStack
-      w='full'
-      p='4'
-      gap='2'
-      borderRadius='lg'
-      border='1px'
-      borderColor='gray.200'
-      shadow='md'
-      bgColor='white'
-    >
-      <FaClock fontSize='24' />
-      <HStack w='full' bgColor='blue.100' justify='space-between'>
-        <Text fontSize={{ base: 16, md: 20 }}>{placeName}</Text>
-        <Button onClick={() => refetch()}>再読み込み</Button>
-      </HStack>
-    </HStack>
+    <Text w='full' px={{ base: 2, md: 4 }} fontSize={{ base: 16, md: 20 }}>
+      {placeName}
+    </Text>
   );
 };
 
