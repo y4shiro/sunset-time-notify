@@ -1,6 +1,6 @@
 # Sunset Time Notify
 
-sunset-time-notify.y4shiro.net
+[Sunset Time Notify](https://sunset-time-notify.y4shiro.net)
 
 任意地点の日の出 / 日の入時刻を表示したり、Push 通知で日没が近づくと通知する Web サービス
 
