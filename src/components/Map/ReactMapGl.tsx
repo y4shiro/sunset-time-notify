@@ -46,21 +46,23 @@ const ReactMapGl: VFC = () => {
 
   return (
     <Box w='100%' h='100%'>
-      <Box
-        backgroundColor='rgba(35,55,75,0.8)'
-        color='white'
-        fontFamily='monospace'
-        fontSize='16'
-        px='4'
-        py='2'
-        m='2'
-        borderRadius='8'
-        position='absolute'
-        zIndex='1'
-      >
-        緯度: {viewState.latitude.toFixed(4)} | 経度: {viewState.longitude.toFixed(4)} | 移動中:
-        {`${isMovingMap}`}
-      </Box>
+      {process.env.NODE_ENV === 'development' && (
+        <Box
+          backgroundColor='rgba(35,55,75,0.8)'
+          color='white'
+          fontFamily='monospace'
+          fontSize='16'
+          px='4'
+          py='2'
+          m='2'
+          borderRadius='8'
+          position='absolute'
+          zIndex='1'
+        >
+          緯度: {viewState.latitude.toFixed(4)} | 経度: {viewState.longitude.toFixed(4)} | 移動中:
+          {`${isMovingMap}`}
+        </Box>
+      )}
       <Map
         {...viewState}
         ref={mapRef}
