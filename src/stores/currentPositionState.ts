@@ -31,11 +31,6 @@ const zoomState = atom<number>({
   default: 12,
 });
 
-export const locationErrorState = atom<string>({
-  key: RecoilAtomKeys.LOCATION_ERROR_STATE,
-  default: '',
-});
-
 export const isMovingMapState = atom<IsMovingMap>({
   key: RecoilAtomKeys.IS_MOVING_MAP_STATE,
   default: false,
