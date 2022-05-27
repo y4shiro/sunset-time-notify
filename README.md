@@ -26,15 +26,15 @@
 - Recoil 0.7.2
 - ESLint / Prettier
 - Jest / React Testing Library
-- Chakra UI
-- date-fns
+- [Chakra UI](https://chakra-ui.com/)
+- [date-fns](https://date-fns.org/)
 - [mourner / suncalc](https://github.com/mourner/suncalc) (日の出日の入時刻計算ライブラリ)
 
 ## 利用した外部サービス
 
-- Mapbox (地図、標高図)
+- [Mapbox](https://www.mapbox.com/) (地図、標高図)
 - Google Analytics 4
-- Vercel (ホスティング)
+- [Vercel](https://vercel.com/) (ホスティング)
 
 ## 環境変数
 
