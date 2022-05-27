@@ -2,7 +2,7 @@
 
 [Sunset Time Notify](https://sunset-time-notify.y4shiro.net)
 
-任意地点の日の出 / 日の入時刻を表示したり、Push 通知で日没が近づくと通知する Web サービス
+任意地点の日の出 / 日の入時刻を表示したり、日没が近づくと Push 通知で通知する Web サービス
 
 ## Features
 
@@ -13,7 +13,7 @@
 
 ## 今後実装予定の機能
 
-- 日の出 / 日の入時刻の 30 分前などに Push 通知を送る
+- 日の出 / 日の入時刻の 30 分前など任意時刻に Push 通知を送る
 - 複数地点の日の出 / 日の入時刻をリスト表示
 
 ## 開発環境 / ライブラリ
@@ -32,7 +32,7 @@
 
 ## 利用した外部サービス
 
-- [Mapbox](https://www.mapbox.com/) (地図、標高図)
+- [Mapbox](https://www.mapbox.com/) (地図、標高データ)
 - Google Analytics 4
 - [Vercel](https://vercel.com/) (ホスティング)
 
