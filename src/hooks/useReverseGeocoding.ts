@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { useCurrentPosition } from '../../hooks/useCurrentPosition';
-import { useReactMapState } from '../../hooks/useReactMapState';
+import { useCurrentPosition } from './useCurrentPosition';
+import { useReactMapState } from './useReactMapState';
 
 const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
 
@@ -24,7 +24,6 @@ export const useReverseGeocoding = (): string => {
   useEffect(() => {
     if (isMovingMap || isStale) return;
     if (isFetchEnabled) {
-      console.log('refetch');
       refetch();
       setIsFetchEnabled(false);
       setTimeout(() => {

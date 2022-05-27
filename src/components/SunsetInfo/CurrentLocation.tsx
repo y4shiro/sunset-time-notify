@@ -2,7 +2,7 @@ import { VFC } from 'react';
 import { Box, Divider, HStack, Text, TextProps, VStack } from '@chakra-ui/react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-import { useReverseGeocoding } from './useReverseGeocoding';
+import { useReverseGeocoding } from '../../hooks/useReverseGeocoding';
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
 export const CurrentLocation: VFC = () => {
