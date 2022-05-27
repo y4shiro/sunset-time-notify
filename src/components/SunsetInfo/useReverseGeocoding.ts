@@ -1,13 +1,12 @@
-import { useEffect, useState, VFC } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { Text } from '@chakra-ui/react';
 
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import { useReactMapState } from '../../hooks/useReactMapState';
 
 const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
 
-const ReverseGeocoding: VFC = () => {
+export const useReverseGeocoding = (): string => {
   const [isFetchEnabled, setIsFetchEnabled] = useState<boolean>(true);
   const [placeName, setPlaceName] = useState('');
   const { latitude, longitude } = useCurrentPosition();
@@ -40,11 +39,5 @@ const ReverseGeocoding: VFC = () => {
     else if (data) setPlaceName(data);
   }, [data, isFetching, isError]);
 
-  return (
-    <Text w='full' px={{ base: 2, md: 4 }} fontSize={{ base: 16, md: 20 }}>
-      {placeName}
-    </Text>
-  );
+  return placeName;
 };
-
-export { ReverseGeocoding };

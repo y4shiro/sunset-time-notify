@@ -2,11 +2,12 @@ import { VFC } from 'react';
 import { Box, Divider, HStack, Text, TextProps, VStack } from '@chakra-ui/react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-import { ReverseGeocoding } from './ReverseGeocoding';
+import { useReverseGeocoding } from './useReverseGeocoding';
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
 export const CurrentLocation: VFC = () => {
   const { latitude, longitude, altitude } = useCurrentPosition();
+  const placeName = useReverseGeocoding();
 
   return (
     <HStack
@@ -20,7 +21,9 @@ export const CurrentLocation: VFC = () => {
     >
       <FaMapMarkerAlt fontSize='24' />
       <VStack w='full'>
-        <ReverseGeocoding />
+        <Text w='full' px={{ base: 2, md: 4 }} fontSize={{ base: 16, md: 20 }}>
+          {placeName}
+        </Text>
         <Divider />
         <HStack w='full' textAlign='center' justify='space-evenly'>
           {/** 緯度経度が 0 度の場合は取得中と表示する。レアケースだが、緯度経度 0 の地点は表示できないので、この辺厳密にする場合は取得中ステータスで管理する*/}
