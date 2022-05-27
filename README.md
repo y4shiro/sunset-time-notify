@@ -6,17 +6,14 @@
 
 - macOS Monterey 12.3.1
 - Node.js 16.13.2
-
 - React 17.0.2
 - Next.js 12.1.0
 - TypeScript 4.6.2
 - Recoil 0.7.2
 - ESLint / Prettier
 - Jest / React Testing Library
-
 - Chakra UI
 - date-fns
-
 - [mourner / suncalc](https://github.com/mourner/suncalc) (日の出日の入時刻計算ライブラリ)
 
 ## 利用した外部サービス
