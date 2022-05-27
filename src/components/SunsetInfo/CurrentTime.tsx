@@ -16,7 +16,7 @@ const CurrentTime: VFC = () => {
   return (
     <HStack
       w='full'
-      p='4'
+      p={{ base: 3, md: 4 }}
       gap='2'
       borderRadius='lg'
       border='1px'

@@ -12,7 +12,7 @@ export const CurrentLocation: VFC = () => {
   return (
     <HStack
       w='full'
-      p='4'
+      p={{ base: 3, md: 4 }}
       borderRadius='lg'
       border='1px'
       borderColor='gray.200'

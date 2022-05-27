@@ -12,8 +12,8 @@ const SunsetInfo: VFC = () => {
       w={{ base: 'full' }}
       minW={{ md: '400px' }}
       maxW={{ md: '540px' }}
-      gap='2'
-      p={{ base: 4, md: 6 }}
+      gap={{ base: 0, md: 2 }}
+      p={{ base: 2, md: 4 }}
       shadow='lg'
       bgColor='gray.100'
     >
