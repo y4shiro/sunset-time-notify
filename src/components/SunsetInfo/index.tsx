@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Box, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 
 import { CurrentLocation } from './CurrentLocation';
 import { CurrentTime } from './CurrentTime';

@@ -1,17 +1,18 @@
 import { VFC } from 'react';
-import { Box, Divider, HStack, SimpleGrid, Text, TextProps, VStack } from '@chakra-ui/react';
+import { Box, Divider, HStack, Text, TextProps, VStack } from '@chakra-ui/react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
+import { useReverseGeocoding } from '../../hooks/useReverseGeocoding';
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
 export const CurrentLocation: VFC = () => {
-  const { latitude, longitude, altitude, locationError } = useCurrentPosition();
+  const { latitude, longitude, altitude } = useCurrentPosition();
+  const placeName = useReverseGeocoding();
 
   return (
     <HStack
       w='full'
       p='4'
-      textAlign='center'
       borderRadius='lg'
       border='1px'
       borderColor='gray.200'
@@ -19,10 +20,12 @@ export const CurrentLocation: VFC = () => {
       bgColor='white'
     >
       <FaMapMarkerAlt fontSize='24' />
-      {locationError ? (
-        <Text fontSize='20'>位置情報の取得に失敗しました</Text>
-      ) : (
-        <HStack w='full' justify='space-evenly'>
+      <VStack w='full'>
+        <Text w='full' px={{ base: 2, md: 4 }} fontSize={{ base: 16, md: 20 }}>
+          {placeName}
+        </Text>
+        <Divider />
+        <HStack w='full' textAlign='center' justify='space-evenly'>
           {/** 緯度経度が 0 度の場合は取得中と表示する。レアケースだが、緯度経度 0 の地点は表示できないので、この辺厳密にする場合は取得中ステータスで管理する*/}
           <Box>
             <TitleText>緯度</TitleText>
@@ -41,7 +44,7 @@ export const CurrentLocation: VFC = () => {
             <ContentText>{altitude ? altitude.toFixed(4) : '未取得'}</ContentText>
           </Box>
         </HStack>
-      )}
+      </VStack>
     </HStack>
   );
 };
