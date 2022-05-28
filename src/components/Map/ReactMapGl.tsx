@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState, VFC } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
-import Map, { NavigationControl, GeolocateControl, Marker, MapRef } from 'react-map-gl';
+import Map, { NavigationControl, GeolocateControl, MapRef } from 'react-map-gl';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { useReactMapState } from '../../hooks/useReactMapState';
+import cross from '../../images/cross_v4.svg';
 
 const ReactMapGl: VFC = () => {
   const [map, setMap] = useState<mapboxgl.Map>();
@@ -73,15 +74,22 @@ const ReactMapGl: VFC = () => {
         mapStyle='mapbox://styles/y4shiro/cl279tgti00jb15qjk6klkzrh'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_KEY}
       >
-        <Marker longitude={139.7} latitude={35.7} color='#000000' />
-        <Marker longitude={139.65} latitude={35.65} color='red' />
-        <Marker longitude={139.6} latitude={35.6} />
         <NavigationControl position='top-right' />
         <GeolocateControl position='top-right' />
-        <AddIcon
-          w={8}
-          h={8}
+        {/* <AddIcon
+          w={{ base: 6, md: 8 }}
+          h={{ base: 6, md: 8 }}
           color={'red'}
+          position='absolute'
+          inset='0'
+          margin='auto'
+          pointerEvents='none'
+        /> */}
+        <Image
+          src={cross.src}
+          alt='cross image for map'
+          w={{ base: 6, md: 8 }}
+          h={{ base: 6, md: 8 }}
           position='absolute'
           inset='0'
           margin='auto'
