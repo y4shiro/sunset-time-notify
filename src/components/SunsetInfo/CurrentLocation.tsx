@@ -50,6 +50,8 @@ export const CurrentLocation: VFC = () => {
 };
 
 const TitleText: VFC<TextProps> = (props) => (
-  <Text fontSize={{ base: 12, md: 14 }} textColor='gray.400' {...props} />
+  <Text fontSize={{ base: 12, md: 14 }} fontWeight='bold' textColor='gray.400' {...props} />
 );
-const ContentText: VFC<TextProps> = (props) => <Text fontSize={{ base: 16, md: 20 }} {...props} />;
+const ContentText: VFC<TextProps> = (props) => (
+  <Text fontSize={{ base: 16, md: 20 }} fontWeight='bold' {...props} />
+);
