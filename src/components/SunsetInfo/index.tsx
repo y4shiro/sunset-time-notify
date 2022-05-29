@@ -9,12 +9,11 @@ import { RemainingTime } from './RemainingTime';
 const SunsetInfo: VFC = () => {
   return (
     <VStack
-      w={{ base: 'full' }}
+      w='full'
       minW={{ md: '400px' }}
       maxW={{ md: '540px' }}
-      gap='2'
-      p={{ base: 4, md: 6 }}
-      shadow='lg'
+      gap={{ base: 0, md: 2 }}
+      p={{ base: 2, md: 4 }}
       bgColor='gray.100'
     >
       <CurrentLocation />

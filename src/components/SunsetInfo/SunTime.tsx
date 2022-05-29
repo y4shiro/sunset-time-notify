@@ -13,7 +13,7 @@ export const SunTime: VFC = () => {
     <SimpleGrid w='full' columns={2} gap='4'>
       <HStack
         w='full'
-        p='4'
+        p={{ base: 3, md: 4 }}
         justifyContent='center'
         borderRadius='xl'
         shadow='lg'
@@ -24,7 +24,7 @@ export const SunTime: VFC = () => {
       </HStack>
       <HStack
         w='full'
-        p='4'
+        p={{ base: 3, md: 4 }}
         justifyContent='center'
         borderRadius='xl'
         shadow='lg'
