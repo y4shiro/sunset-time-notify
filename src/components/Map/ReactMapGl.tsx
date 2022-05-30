@@ -70,7 +70,7 @@ const ReactMapGl: VFC = () => {
         onMoveStart={() => setIsMovingMapToTrue()}
         onMoveEnd={() => setIsMovingMapToFalse()}
         style={{ width: '100%', height: '100%' }}
-        mapStyle='mapbox://styles/y4shiro/cl3r19nxn000n14qwbqi5720x?optimize=true'
+        mapStyle='mapbox://styles/y4shiro/cl3s0s1dc000o15t57oxmbywx?optimize=true' // 26 まで減らしたやつ
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_KEY}
       >
         <NavigationControl position='top-right' />
