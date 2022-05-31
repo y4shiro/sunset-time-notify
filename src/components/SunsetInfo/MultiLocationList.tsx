@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { useState, VFC } from 'react';
 import { calcSuntime } from '../../lib/calcSuntime';
 
 import { StackDivider, HStack, Text, VStack, IconButton } from '@chakra-ui/react';
@@ -50,6 +50,15 @@ const locationData: locationType[] = [
 ];
 
 const MultiLocationList: VFC = () => {
+  const [locations, setLocations] = useState(locationData);
+
+  const removeLocation = (id: number) => {
+    const state = locations.filter((l) => {
+      return l.id !== id;
+    });
+    setLocations(state);
+  };
+
   return (
     <VStack
       w='full'
@@ -61,14 +70,15 @@ const MultiLocationList: VFC = () => {
       bgColor='white'
       divider={<StackDivider />}
     >
-      {locationData.map((data) => (
-        <LocationItem key={data.id} {...data} />
+      {locations.map((data) => (
+        <LocationItem key={data.id} removeLocation={removeLocation} {...data} />
       ))}
     </VStack>
   );
 };
 
-const LocationItem = (props: locationType) => {
+const LocationItem = (props: locationType & { removeLocation: (id: number) => void }) => {
+  const { id, removeLocation } = props;
   const { latitude, longitude, altitude, name } = props.location;
   const { sunrise, sunset } = calcSuntime(new Date(), latitude, longitude, altitude);
 
@@ -89,7 +99,12 @@ const LocationItem = (props: locationType) => {
           <Text>日の入: {formattedSunset}</Text>
         </HStack>
       </VStack>
-      <IconButton color='red' aria-label='TrashButton' icon={<BiTrash size='24' />}>
+      <IconButton
+        color='red'
+        aria-label='TrashButton'
+        icon={<BiTrash size='24' />}
+        onClick={() => removeLocation(id)}
+      >
         Trash
       </IconButton>
     </HStack>
