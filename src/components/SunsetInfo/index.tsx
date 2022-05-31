@@ -5,6 +5,7 @@ import { CurrentLocation } from './CurrentLocation';
 import { CurrentTime } from './CurrentTime';
 import { SunTime } from './SunTime';
 import { RemainingTime } from './RemainingTime';
+import MultiLocationList from './MultiLocationList';
 
 const SunsetInfo: VFC = () => {
   return (
@@ -20,6 +21,7 @@ const SunsetInfo: VFC = () => {
       <CurrentTime />
       <RemainingTime />
       <SunTime />
+      <MultiLocationList />
     </VStack>
   );
 };
