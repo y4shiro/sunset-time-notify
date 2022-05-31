@@ -1,5 +1,6 @@
 import React, { VFC } from 'react';
-import { StackDivider, HStack, Text, VStack } from '@chakra-ui/react';
+import { StackDivider, HStack, Text, VStack, IconButton } from '@chakra-ui/react';
+import { BiTrash } from 'react-icons/bi';
 
 type locationType = {
   id: number;
@@ -68,7 +69,7 @@ const LocationItem = (props: locationType) => {
   const { latitude, longitude, altitude, name } = props.location;
 
   return (
-    <HStack w='full' p='2' bgColor='blue.100'>
+    <HStack w='full' px='2' justify='space-between' bgColor='blue.100'>
       <VStack w='full'>
         <Text w='full'>{name}</Text>
         <HStack w='full'>
@@ -77,6 +78,9 @@ const LocationItem = (props: locationType) => {
           <Text>高度: {altitude}</Text>
         </HStack>
       </VStack>
+      <IconButton color='red' aria-label='TrashButton' icon={<BiTrash size='24' />}>
+        Trash
+      </IconButton>
     </HStack>
   );
 };
