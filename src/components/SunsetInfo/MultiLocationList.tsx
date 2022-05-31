@@ -10,6 +10,7 @@ import {
   MdOutlineAddLocationAlt,
 } from 'react-icons/md';
 import { format } from 'date-fns';
+import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 
 type locationType = {
   id: number;
@@ -57,9 +58,20 @@ const locationData: locationType[] = [
 
 const MultiLocationList: VFC = () => {
   const [locations, setLocations] = useState(locationData);
+  const { latitude, longitude, altitude } = useCurrentPosition();
 
   const addLocation = () => {
-    console.log('add location');
+    const state: locationType = {
+      id: locations.length + 1,
+      location: {
+        latitude,
+        longitude,
+        altitude,
+        name: `日本, テスト地名${locations.length + 1}`,
+      },
+      enabledNotify: false,
+    };
+    setLocations((s) => [...s, state]);
   };
 
   const removeLocation = (id: number) => {
