@@ -1,8 +1,14 @@
 import React, { useState, VFC } from 'react';
 import { calcSuntime } from '../../lib/calcSuntime';
 
-import { StackDivider, HStack, Text, VStack, IconButton } from '@chakra-ui/react';
+import { StackDivider, HStack, Text, VStack, IconButton, Button } from '@chakra-ui/react';
 import { BiTrash } from 'react-icons/bi';
+import {
+  MdAddLocation,
+  MdAddLocationAlt,
+  MdOutlineAddLocation,
+  MdOutlineAddLocationAlt,
+} from 'react-icons/md';
 import { format } from 'date-fns';
 
 type locationType = {
@@ -52,6 +58,10 @@ const locationData: locationType[] = [
 const MultiLocationList: VFC = () => {
   const [locations, setLocations] = useState(locationData);
 
+  const addLocation = () => {
+    console.log('add location');
+  };
+
   const removeLocation = (id: number) => {
     const state = locations.filter((l) => {
       return l.id !== id;
@@ -73,6 +83,7 @@ const MultiLocationList: VFC = () => {
       {locations.map((data) => (
         <LocationItem key={data.id} removeLocation={removeLocation} {...data} />
       ))}
+      <AddLocationItem addLocation={addLocation} />
     </VStack>
   );
 };
@@ -107,6 +118,20 @@ const LocationItem = (props: locationType & { removeLocation: (id: number) => vo
       >
         Trash
       </IconButton>
+    </HStack>
+  );
+};
+
+const AddLocationItem = ({ addLocation }: { addLocation: () => void }) => {
+  return (
+    <HStack w='full' px='2' justify='center'>
+      <Button onClick={() => addLocation()}>
+        <MdAddLocation size='24' />
+        <MdAddLocationAlt size='24' />
+        <MdOutlineAddLocation size='24' />
+        <MdOutlineAddLocationAlt size='24' />
+        <Text>現在地をリストに追加</Text>
+      </Button>
     </HStack>
   );
 };
