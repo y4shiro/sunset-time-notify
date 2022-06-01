@@ -7,6 +7,7 @@ import { MdAddLocationAlt } from 'react-icons/md';
 
 import { calcSuntime } from '../../lib/calcSuntime';
 import { useAsyncCurrentPosition } from '../../hooks/useAsyncCurrentPosition';
+import { useReverseGeocoding } from '../../hooks/useReverseGeocoding';
 
 type locationType = {
   id: number;
@@ -55,6 +56,7 @@ const locationData: locationType[] = [
 const MultiLocationList: VFC = () => {
   const [locations, setLocations] = useState(locationData);
   const { getPositionOnce } = useAsyncCurrentPosition();
+  const placeName = useReverseGeocoding();
 
   const addLocation = async () => {
     const position = await getPositionOnce();
@@ -65,7 +67,7 @@ const MultiLocationList: VFC = () => {
         latitude: position.latitude,
         longitude: position.longitude,
         altitude: position.altitude,
-        name: `日本, テスト地名${locations.length + 1}`,
+        name: placeName,
       },
       enabledNotify: false,
     };

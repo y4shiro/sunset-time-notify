@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { useQuery } from 'react-query';
 
 import { useCurrentPosition } from './useCurrentPosition';
 import { useReactMapState } from './useReactMapState';
+import { currentPlaceNameState } from '../stores/currentPlaceNameState';
 
 const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
 
 export const useReverseGeocoding = (): string => {
   const [isFetchEnabled, setIsFetchEnabled] = useState<boolean>(true);
-  const [placeName, setPlaceName] = useState('');
+  const [placeName, setPlaceName] = useRecoilState(currentPlaceNameState);
   const { latitude, longitude } = useCurrentPosition();
   const { isMovingMap } = useReactMapState();
 

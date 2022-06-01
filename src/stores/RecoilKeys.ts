@@ -5,6 +5,7 @@ export enum RecoilAtomKeys {
   ZOOM_STATE = 'zoomState',
   CURRENT_POSITION_STATE = 'currentPositionState',
   IS_MOVING_MAP_STATE = 'isMovingMapState',
+  CURRENT_PLACENAME_STATE = 'currentPlaceNameState',
   CURRENT_TIME_STATE = 'currentTimeState',
   SUNRISE_TIME_STATE = 'sunriseTimeState',
   SUNSET_TIME_STATE = 'sunsetTimeState',
