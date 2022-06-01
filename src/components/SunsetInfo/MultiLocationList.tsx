@@ -7,7 +7,7 @@ import { MdAddLocationAlt } from 'react-icons/md';
 
 import { calcSuntime } from '../../lib/calcSuntime';
 import { useAsyncCurrentPosition } from '../../hooks/useAsyncCurrentPosition';
-import { useReverseGeocoding } from '../../hooks/useReverseGeocoding';
+import { useAsyncCurrentPlaceName } from '../../hooks/useAsyncCurrentPlaceName';
 
 type locationType = {
   id: number;
@@ -56,10 +56,11 @@ const locationData: locationType[] = [
 const MultiLocationList: VFC = () => {
   const [locations, setLocations] = useState(locationData);
   const { getPositionOnce } = useAsyncCurrentPosition();
-  const placeName = useReverseGeocoding();
+  const { getCurrentPlaceName } = useAsyncCurrentPlaceName();
 
   const addLocation = async () => {
     const position = await getPositionOnce();
+    const placeName = await getCurrentPlaceName();
 
     const state: locationType = {
       id: locations.length + 1,
