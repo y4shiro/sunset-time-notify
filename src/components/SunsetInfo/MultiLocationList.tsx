@@ -111,9 +111,9 @@ const LocationItem = (props: locationType & { removeLocation: (id: number) => vo
       <VStack w='full'>
         <Text w='full'>{name}</Text>
         <HStack w='full'>
-          <Text>緯度: {latitude}</Text>
-          <Text>経度: {longitude}</Text>
-          <Text>高度: {altitude}</Text>
+          <Text>緯度: {latitude.toFixed(4)}</Text>
+          <Text>経度: {longitude.toFixed(4)}</Text>
+          <Text>高度: {altitude.toFixed(4)}</Text>
         </HStack>
         <HStack w='full'>
           <Text>日の出: {formattedSunrise}</Text>
