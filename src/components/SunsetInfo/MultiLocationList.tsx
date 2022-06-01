@@ -1,4 +1,4 @@
-import React, { useState, VFC } from 'react';
+import { VFC } from 'react';
 import { format } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -6,56 +6,14 @@ import { StackDivider, HStack, Text, VStack, IconButton, Button } from '@chakra-
 import { BiTrash } from 'react-icons/bi';
 import { MdAddLocationAlt } from 'react-icons/md';
 
+import { locationType } from '../../utils/types';
 import { calcSuntime } from '../../lib/calcSuntime';
 import { useAsyncCurrentPosition } from '../../hooks/useAsyncCurrentPosition';
 import { useAsyncCurrentPlaceName } from '../../hooks/useAsyncCurrentPlaceName';
-
-type locationType = {
-  id: string;
-  location: {
-    latitude: number;
-    longitude: number;
-    altitude: number;
-    name: string;
-  };
-  enabledNotify: boolean;
-};
-
-const locationData: locationType[] = [
-  {
-    id: '1',
-    location: {
-      latitude: 35.6814,
-      longitude: 139.7671,
-      altitude: 14.5352,
-      name: '日本, 東京都千代田区',
-    },
-    enabledNotify: false,
-  },
-  {
-    id: '2',
-    location: {
-      latitude: 34.7017,
-      longitude: 135.4982,
-      altitude: 17.7244,
-      name: '日本, 大阪府大阪市北区',
-    },
-    enabledNotify: false,
-  },
-  {
-    id: '3',
-    location: {
-      latitude: 33.59,
-      longitude: 130.4236,
-      altitude: 9.9134,
-      name: '日本, 福岡県福岡市博多区',
-    },
-    enabledNotify: false,
-  },
-];
+import { useLocationsList } from '../../hooks/useLocationsList';
 
 const MultiLocationList: VFC = () => {
-  const [locations, setLocations] = useState(locationData);
+  const { locations, setLocations } = useLocationsList();
   const { getPositionOnce } = useAsyncCurrentPosition();
   const { getCurrentPlaceName } = useAsyncCurrentPlaceName();
 
