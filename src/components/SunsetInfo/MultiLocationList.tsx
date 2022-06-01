@@ -10,7 +10,8 @@ import {
   MdOutlineAddLocationAlt,
 } from 'react-icons/md';
 import { format } from 'date-fns';
-import { useCurrentPosition } from '../../hooks/useCurrentPosition';
+
+import { useAsyncCurrentPosition } from '../../hooks/useAsyncCurrentPosition';
 
 type locationType = {
   id: number;
@@ -58,15 +59,17 @@ const locationData: locationType[] = [
 
 const MultiLocationList: VFC = () => {
   const [locations, setLocations] = useState(locationData);
-  const { latitude, longitude, altitude } = useCurrentPosition();
+  const { getPositionOnce } = useAsyncCurrentPosition();
 
-  const addLocation = () => {
+  const addLocation = async () => {
+    const position = await getPositionOnce();
+
     const state: locationType = {
       id: locations.length + 1,
       location: {
-        latitude,
-        longitude,
-        altitude,
+        latitude: position.latitude,
+        longitude: position.longitude,
+        altitude: position.altitude,
         name: `日本, テスト地名${locations.length + 1}`,
       },
       enabledNotify: false,
