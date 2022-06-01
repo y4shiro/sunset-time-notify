@@ -3,14 +3,14 @@ import { altitudeState, latitudeState, longitudeState } from '../stores/currentP
 
 export const useAsyncCurrentPosition = () => {
   const getPositionOnce = useRecoilCallback(({ snapshot }) => async () => {
-    const lat = await snapshot.getPromise(latitudeState);
-    const lon = await snapshot.getPromise(longitudeState);
-    const alt = await snapshot.getPromise(altitudeState);
+    const latitude = await snapshot.getPromise(latitudeState);
+    const longitude = await snapshot.getPromise(longitudeState);
+    const altitude = await snapshot.getPromise(altitudeState);
 
     return {
-      latitude: lat,
-      longitude: lon,
-      altitude: alt,
+      latitude,
+      longitude,
+      altitude,
     };
   });
 
