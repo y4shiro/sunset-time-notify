@@ -1,16 +1,11 @@
 import React, { useState, VFC } from 'react';
-import { calcSuntime } from '../../lib/calcSuntime';
+import { format } from 'date-fns';
 
 import { StackDivider, HStack, Text, VStack, IconButton, Button } from '@chakra-ui/react';
 import { BiTrash } from 'react-icons/bi';
-import {
-  MdAddLocation,
-  MdAddLocationAlt,
-  MdOutlineAddLocation,
-  MdOutlineAddLocationAlt,
-} from 'react-icons/md';
-import { format } from 'date-fns';
+import { MdAddLocationAlt } from 'react-icons/md';
 
+import { calcSuntime } from '../../lib/calcSuntime';
 import { useAsyncCurrentPosition } from '../../hooks/useAsyncCurrentPosition';
 
 type locationType = {
@@ -140,11 +135,14 @@ const LocationItem = (props: locationType & { removeLocation: (id: number) => vo
 const AddLocationItem = ({ addLocation }: { addLocation: () => void }) => {
   return (
     <HStack w='full' px='2' justify='center'>
-      <Button onClick={() => addLocation()}>
-        <MdAddLocation size='24' />
+      <Button
+        bgColor='green'
+        color='white'
+        _hover={{ bg: 'green.500' }}
+        gap='2'
+        onClick={() => addLocation()}
+      >
         <MdAddLocationAlt size='24' />
-        <MdOutlineAddLocation size='24' />
-        <MdOutlineAddLocationAlt size='24' />
         <Text>現在地をリストに追加</Text>
       </Button>
     </HStack>
