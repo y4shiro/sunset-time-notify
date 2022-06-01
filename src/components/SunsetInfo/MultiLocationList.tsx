@@ -1,5 +1,6 @@
 import React, { useState, VFC } from 'react';
 import { format } from 'date-fns';
+import { v4 as uuidv4 } from 'uuid';
 
 import { StackDivider, HStack, Text, VStack, IconButton, Button } from '@chakra-ui/react';
 import { BiTrash } from 'react-icons/bi';
@@ -10,7 +11,7 @@ import { useAsyncCurrentPosition } from '../../hooks/useAsyncCurrentPosition';
 import { useAsyncCurrentPlaceName } from '../../hooks/useAsyncCurrentPlaceName';
 
 type locationType = {
-  id: number;
+  id: string;
   location: {
     latitude: number;
     longitude: number;
@@ -22,7 +23,7 @@ type locationType = {
 
 const locationData: locationType[] = [
   {
-    id: 1,
+    id: '1',
     location: {
       latitude: 35.6814,
       longitude: 139.7671,
@@ -32,7 +33,7 @@ const locationData: locationType[] = [
     enabledNotify: false,
   },
   {
-    id: 2,
+    id: '2',
     location: {
       latitude: 34.7017,
       longitude: 135.4982,
@@ -42,7 +43,7 @@ const locationData: locationType[] = [
     enabledNotify: false,
   },
   {
-    id: 3,
+    id: '3',
     location: {
       latitude: 33.59,
       longitude: 130.4236,
@@ -63,7 +64,7 @@ const MultiLocationList: VFC = () => {
     const placeName = await getCurrentPlaceName();
 
     const state: locationType = {
-      id: locations.length + 1,
+      id: uuidv4(),
       location: {
         latitude: position.latitude,
         longitude: position.longitude,
@@ -75,7 +76,7 @@ const MultiLocationList: VFC = () => {
     setLocations((s) => [...s, state]);
   };
 
-  const removeLocation = (id: number) => {
+  const removeLocation = (id: string) => {
     const state = locations.filter((l) => {
       return l.id !== id;
     });
@@ -101,7 +102,7 @@ const MultiLocationList: VFC = () => {
   );
 };
 
-const LocationItem = (props: locationType & { removeLocation: (id: number) => void }) => {
+const LocationItem = (props: locationType & { removeLocation: (id: string) => void }) => {
   const { id, removeLocation } = props;
   const { latitude, longitude, altitude, name } = props.location;
   const { sunrise, sunset } = calcSuntime(new Date(), latitude, longitude, altitude);
