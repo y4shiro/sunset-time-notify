@@ -13,7 +13,7 @@ import { useAsyncCurrentPlaceName } from '../../hooks/useAsyncCurrentPlaceName';
 import { useLocationsList } from '../../hooks/useLocationsList';
 
 const MultiLocationList: VFC = () => {
-  const { locations, setLocations } = useLocationsList();
+  const { locations, setLocations, removeLocation } = useLocationsList();
   const { getPositionOnce } = useAsyncCurrentPosition();
   const { getCurrentPlaceName } = useAsyncCurrentPlaceName();
 
@@ -32,13 +32,6 @@ const MultiLocationList: VFC = () => {
       enabledNotify: false,
     };
     setLocations((s) => [...s, state]);
-  };
-
-  const removeLocation = (id: string) => {
-    const state = locations.filter((l) => {
-      return l.id !== id;
-    });
-    setLocations(state);
   };
 
   return (

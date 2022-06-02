@@ -37,5 +37,12 @@ const locationData: locationType[] = [
 export const useLocationsList = () => {
   const [locations, setLocations] = useState<locationType[]>(locationData);
 
-  return { locations, setLocations };
+  const removeLocation = (id: string) => {
+    const state = locations.filter((lists) => {
+      return lists.id !== id;
+    });
+    setLocations(state);
+  };
+
+  return { locations, setLocations, removeLocation };
 };
