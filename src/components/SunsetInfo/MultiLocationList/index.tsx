@@ -5,9 +5,9 @@ import { StackDivider, HStack, Text, VStack, IconButton, Button } from '@chakra-
 import { BiTrash } from 'react-icons/bi';
 import { MdAddLocationAlt } from 'react-icons/md';
 
-import { locationType } from '../../utils/types';
-import { calcSuntime } from '../../lib/calcSuntime';
-import { useLocationsList } from '../../hooks/useLocationsList';
+import { locationType } from '../../../utils/types';
+import { calcSuntime } from '../../../lib/calcSuntime';
+import { useLocationsList } from '../../../hooks/useLocationsList';
 
 const MultiLocationList: VFC = () => {
   const { locations, removeLocation, addLocation } = useLocationsList();
