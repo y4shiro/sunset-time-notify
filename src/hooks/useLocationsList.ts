@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import { locationType } from '../utils/types';
+import { useAsyncCurrentPosition } from './useAsyncCurrentPosition';
+import { useAsyncCurrentPlaceName } from './useAsyncCurrentPlaceName';
 
 const locationData: locationType[] = [
   {
@@ -36,6 +40,25 @@ const locationData: locationType[] = [
 
 export const useLocationsList = () => {
   const [locations, setLocations] = useState<locationType[]>(locationData);
+  const { getPositionOnce } = useAsyncCurrentPosition();
+  const { getCurrentPlaceName } = useAsyncCurrentPlaceName();
+
+  const addLocation = async () => {
+    const position = await getPositionOnce();
+    const placeName = await getCurrentPlaceName();
+
+    const state: locationType = {
+      id: uuidv4(),
+      location: {
+        latitude: position.latitude,
+        longitude: position.longitude,
+        altitude: position.altitude,
+        name: placeName,
+      },
+      enabledNotify: false,
+    };
+    setLocations((s) => [...s, state]);
+  };
 
   const removeLocation = (id: string) => {
     const state = locations.filter((lists) => {
@@ -44,5 +67,5 @@ export const useLocationsList = () => {
     setLocations(state);
   };
 
-  return { locations, setLocations, removeLocation };
+  return { locations, removeLocation, addLocation };
 };

@@ -1,6 +1,5 @@
 import { VFC } from 'react';
 import { format } from 'date-fns';
-import { v4 as uuidv4 } from 'uuid';
 
 import { StackDivider, HStack, Text, VStack, IconButton, Button } from '@chakra-ui/react';
 import { BiTrash } from 'react-icons/bi';
@@ -8,31 +7,10 @@ import { MdAddLocationAlt } from 'react-icons/md';
 
 import { locationType } from '../../utils/types';
 import { calcSuntime } from '../../lib/calcSuntime';
-import { useAsyncCurrentPosition } from '../../hooks/useAsyncCurrentPosition';
-import { useAsyncCurrentPlaceName } from '../../hooks/useAsyncCurrentPlaceName';
 import { useLocationsList } from '../../hooks/useLocationsList';
 
 const MultiLocationList: VFC = () => {
-  const { locations, setLocations, removeLocation } = useLocationsList();
-  const { getPositionOnce } = useAsyncCurrentPosition();
-  const { getCurrentPlaceName } = useAsyncCurrentPlaceName();
-
-  const addLocation = async () => {
-    const position = await getPositionOnce();
-    const placeName = await getCurrentPlaceName();
-
-    const state: locationType = {
-      id: uuidv4(),
-      location: {
-        latitude: position.latitude,
-        longitude: position.longitude,
-        altitude: position.altitude,
-        name: placeName,
-      },
-      enabledNotify: false,
-    };
-    setLocations((s) => [...s, state]);
-  };
+  const { locations, removeLocation, addLocation } = useLocationsList();
 
   return (
     <VStack
