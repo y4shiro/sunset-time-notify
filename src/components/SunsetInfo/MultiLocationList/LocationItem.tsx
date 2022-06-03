@@ -1,10 +1,13 @@
-import { Box, HStack, IconButton, Text, VStack } from '@chakra-ui/react';
+import { HStack, IconButton, Text, VStack } from '@chakra-ui/react';
 import { format } from 'date-fns';
+
 import { BiTrash } from 'react-icons/bi';
 import { FiSunrise, FiSunset } from 'react-icons/fi';
+import { BsSignpostFill } from 'react-icons/bs';
 
 import { calcSuntime } from '../../../lib/calcSuntime';
 import { locationType } from '../../../utils/types';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 export const LocationItem = (props: locationType & { removeLocation: (id: string) => void }) => {
   const { id, removeLocation } = props;
@@ -16,21 +19,26 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
 
   return (
     <HStack w='full' px='2' justify='space-between'>
-      <VStack w='full' spacing='0'>
-        <Text w='full' fontSize='20'>
-          {name}
-        </Text>
-        <HStack w='full' fontSize='14' color='gray.400'>
-          <Text>緯度: {latitude.toFixed(4)}</Text>
-          <Text>経度: {longitude.toFixed(4)}</Text>
-          <Text>高度: {altitude.toFixed(4)}</Text>
-        </HStack>
+      <VStack w='full'>
+        <VStack w='full' spacing='0'>
+          <HStack w='full' fontSize='20'>
+            <BsSignpostFill />
+            <Text w='full'>{name}</Text>
+          </HStack>
+          <HStack w='full' fontSize='14' color='gray.400'>
+            <FaMapMarkerAlt />
+            <Text>緯度: {latitude.toFixed(4)}</Text>
+            <Text>経度: {longitude.toFixed(4)}</Text>
+            <Text>高度: {altitude.toFixed(4)}</Text>
+          </HStack>
+        </VStack>
+
         <HStack w='full' gap='2'>
-          <HStack>
+          <HStack py='1' px='2' borderRadius='md' fontWeight='bold' bgColor='#fcd057'>
             <FiSunrise />
             <Text>{formattedSunrise}</Text>
           </HStack>
-          <HStack>
+          <HStack py='1' px='2' borderRadius='md' fontWeight='bold' color='white' bgColor='#243ea4'>
             <FiSunset />
             <Text>{formattedSunset}</Text>
           </HStack>
