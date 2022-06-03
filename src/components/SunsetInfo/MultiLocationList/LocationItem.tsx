@@ -21,13 +21,13 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
     <HStack w='full' px='2' justify='space-between'>
       <VStack w='full'>
         <VStack w='full' spacing='0'>
-          <HStack w='full' fontSize='20'>
+          <HStack w='full' fontSize={{ base: 16, md: 20 }}>
             <BsSignpostFill />
             <Text w='full' fontWeight='bold'>
               {name}
             </Text>
           </HStack>
-          <HStack w='full' fontSize='14' color='gray.500'>
+          <HStack w='full' fontSize={{ base: 11, md: 14 }} color='gray.500'>
             <FaMapMarkerAlt />
             <Text>緯度: {latitude.toFixed(4)}</Text>
             <Text>経度: {longitude.toFixed(4)}</Text>
