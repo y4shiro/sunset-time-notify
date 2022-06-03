@@ -19,10 +19,10 @@ const MultiLocationList: VFC = () => {
       bgColor='white'
       divider={<StackDivider />}
     >
+      <AddLocationItem addLocation={addLocation} />
       {locations.map((data) => (
         <LocationItem key={data.id} removeLocation={removeLocation} {...data} />
       ))}
-      <AddLocationItem addLocation={addLocation} />
     </VStack>
   );
 };
