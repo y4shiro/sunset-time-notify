@@ -2,8 +2,8 @@ import { HStack, IconButton, Text, VStack } from '@chakra-ui/react';
 import { format } from 'date-fns';
 
 import { BiTrash } from 'react-icons/bi';
-import { FiSunrise, FiSunset } from 'react-icons/fi';
 import { BsSignpostFill } from 'react-icons/bs';
+import { RiSunFill, RiMoonClearFill } from 'react-icons/ri';
 
 import { calcSuntime } from '../../../lib/calcSuntime';
 import { locationType } from '../../../utils/types';
@@ -37,11 +37,11 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
 
         <HStack w='full'>
           <HStack py='1' px='2' borderRadius='md' fontWeight='bold' bgColor='#fcd057'>
-            <FiSunrise />
+            <RiSunFill />
             <Text>{formattedSunrise}</Text>
           </HStack>
           <HStack py='1' px='2' borderRadius='md' fontWeight='bold' color='white' bgColor='#243ea4'>
-            <FiSunset />
+            <RiMoonClearFill />
             <Text>{formattedSunset}</Text>
           </HStack>
         </HStack>
