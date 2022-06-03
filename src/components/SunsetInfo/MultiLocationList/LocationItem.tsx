@@ -27,7 +27,7 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
               {name}
             </Text>
           </HStack>
-          <HStack w='full' fontSize='14' color='gray.400'>
+          <HStack w='full' fontSize='14' color='gray.500'>
             <FaMapMarkerAlt />
             <Text>緯度: {latitude.toFixed(4)}</Text>
             <Text>経度: {longitude.toFixed(4)}</Text>
@@ -48,6 +48,7 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
       </VStack>
       <IconButton
         color='red'
+        bgColor='white'
         aria-label='TrashButton'
         icon={<BiTrash size='24' />}
         onClick={() => removeLocation(id)}
