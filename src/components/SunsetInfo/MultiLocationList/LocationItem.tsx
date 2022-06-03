@@ -23,7 +23,9 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
         <VStack w='full' spacing='0'>
           <HStack w='full' fontSize='20'>
             <BsSignpostFill />
-            <Text w='full'>{name}</Text>
+            <Text w='full' fontWeight='bold'>
+              {name}
+            </Text>
           </HStack>
           <HStack w='full' fontSize='14' color='gray.400'>
             <FaMapMarkerAlt />
@@ -33,7 +35,7 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
           </HStack>
         </VStack>
 
-        <HStack w='full' gap='2'>
+        <HStack w='full'>
           <HStack py='1' px='2' borderRadius='md' fontWeight='bold' bgColor='#fcd057'>
             <FiSunrise />
             <Text>{formattedSunrise}</Text>
