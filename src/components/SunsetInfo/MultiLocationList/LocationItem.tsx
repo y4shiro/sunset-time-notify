@@ -1,7 +1,22 @@
-import { HStack, IconButton, Text, VStack } from '@chakra-ui/react';
+import {
+  Button,
+  Box,
+  HStack,
+  IconButton,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 import { format } from 'date-fns';
 
 import { BiTrash } from 'react-icons/bi';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import { RiSunFill, RiMoonClearFill } from 'react-icons/ri';
 
 import { calcSuntime } from '../../../lib/calcSuntime';
@@ -44,15 +59,29 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
           </HStack>
         </HStack>
       </VStack>
-      <IconButton
-        color='red'
-        bgColor='white'
-        aria-label='TrashButton'
-        icon={<BiTrash size='24' />}
-        onClick={() => removeLocation(id)}
-      >
-        Trash
-      </IconButton>
+      <Box>
+        <Popover>
+          <PopoverTrigger>
+            <IconButton
+              aria-label='More server options'
+              icon={<BsThreeDotsVertical />}
+              variant='solid'
+              w='fit-content'
+            />
+          </PopoverTrigger>
+          <PopoverContent>
+            {/* <PopoverArrow /> */}
+            <PopoverBody>
+              <HStack>
+                <Button onClick={() => removeLocation(id)}>
+                  <BiTrash size='24' />
+                  <Text>削除</Text>
+                </Button>
+              </HStack>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </Box>
     </HStack>
   );
 };
