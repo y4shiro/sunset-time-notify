@@ -6,9 +6,7 @@ import {
   Popover,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Text,
   VStack,
@@ -63,13 +61,13 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
         <Popover>
           <PopoverTrigger>
             <IconButton
+              w='fit-content'
               borderRadius='full'
               bgColor='unset'
-              _focus={{ boxShadow: 'none' }}
-              aria-label='More server options'
-              icon={<BsThreeDotsVertical />}
               variant='solid'
-              w='fit-content'
+              _focus={{ boxShadow: 'none' }}
+              icon={<BsThreeDotsVertical />}
+              aria-label='More options'
             />
           </PopoverTrigger>
           <PopoverContent w='fit-content' _focus={{ boxShadow: 'none' }}>
@@ -83,7 +81,7 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
                   leftIcon={<BiTrash />}
                   onClick={() => removeLocation(id)}
                 >
-                  <Text>削除</Text>
+                  削除
                 </Button>
               </VStack>
             </PopoverBody>
