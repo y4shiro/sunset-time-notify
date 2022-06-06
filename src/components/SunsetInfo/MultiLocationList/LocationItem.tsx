@@ -32,7 +32,7 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
   const formattedSunset = format(sunset, 'HH:mm:ss');
 
   return (
-    <HStack w='full' px='2' justify='space-between'>
+    <HStack w='full' pl='2' justify='space-between'>
       <VStack w='full'>
         <VStack w='full' spacing='0'>
           <HStack w='full' fontSize={{ base: 16, md: 20 }}>
@@ -63,21 +63,28 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
         <Popover>
           <PopoverTrigger>
             <IconButton
+              borderRadius='full'
+              bgColor='unset'
               aria-label='More server options'
               icon={<BsThreeDotsVertical />}
               variant='solid'
               w='fit-content'
             />
           </PopoverTrigger>
-          <PopoverContent>
-            {/* <PopoverArrow /> */}
+          <PopoverContent w='fit-content'>
+            <PopoverArrow />
             <PopoverBody>
-              <HStack>
-                <Button onClick={() => removeLocation(id)}>
-                  <BiTrash size='24' />
+              <VStack>
+                <Button
+                  w='128px'
+                  variant='ghost'
+                  colorScheme='red'
+                  leftIcon={<BiTrash />}
+                  onClick={() => removeLocation(id)}
+                >
                   <Text>削除</Text>
                 </Button>
-              </HStack>
+              </VStack>
             </PopoverBody>
           </PopoverContent>
         </Popover>
