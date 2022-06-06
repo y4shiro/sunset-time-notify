@@ -65,13 +65,14 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
             <IconButton
               borderRadius='full'
               bgColor='unset'
+              _focus={{ boxShadow: 'none' }}
               aria-label='More server options'
               icon={<BsThreeDotsVertical />}
               variant='solid'
               w='fit-content'
             />
           </PopoverTrigger>
-          <PopoverContent w='fit-content'>
+          <PopoverContent w='fit-content' _focus={{ boxShadow: 'none' }}>
             <PopoverArrow />
             <PopoverBody>
               <VStack>
