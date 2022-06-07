@@ -6,7 +6,7 @@ import SunsetInfo from './SunsetInfo';
 
 const MainContent: VFC = () => {
   return (
-    <Flex w='100%' direction={{ base: 'column', md: 'row' }}>
+    <Flex w='100%' direction={{ base: 'column', md: 'row' }} bgColor='gray.100'>
       <Map />
       <SunsetInfo />
     </Flex>

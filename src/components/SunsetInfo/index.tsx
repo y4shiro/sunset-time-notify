@@ -15,7 +15,6 @@ const SunsetInfo: VFC = () => {
       maxW={{ md: '540px' }}
       gap={{ base: 0, md: 2 }}
       p={{ base: 2, md: 4 }}
-      bgColor='gray.100'
     >
       <CurrentLocation />
       <CurrentTime />
