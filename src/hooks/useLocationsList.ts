@@ -28,10 +28,9 @@ export const useLocationsList = () => {
   };
 
   const removeLocation = (id: string) => {
-    const state = locations.filter((lists) => {
-      return lists.id !== id;
+    setLocations((s) => {
+      return s.filter((list) => list.id !== id);
     });
-    setLocations(state);
   };
 
   useEffect(() => {
