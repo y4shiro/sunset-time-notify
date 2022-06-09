@@ -1,13 +1,15 @@
 import { VFC } from 'react';
-import { chakra, Box, Flex, BoxProps } from '@chakra-ui/react';
-import { isValidMotionProp, motion } from 'framer-motion';
+import { Box, Flex, BoxProps, ButtonProps, Button } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
-const ChakraBox = motion<Omit<BoxProps, 'transition'>>(Box);
+const MotionChakraBox = motion<Omit<BoxProps, 'transition'>>(Box);
+const MotionButton = motion<Omit<ButtonProps, 'transition'>>(Button);
 
 const FramerMotion: VFC = () => {
   return (
     <Flex w='100%' minH='80vh' bgColor='gray.100'>
-      <ChakraBox
+      <MotionChakraBox
         m='24'
         w='100px'
         h='100px'
@@ -15,7 +17,7 @@ const FramerMotion: VFC = () => {
         animate={{ scale: 2 }}
         transition={{ duration: 2 }}
       />
-      <ChakraBox
+      <MotionChakraBox
         m='24'
         w='100px'
         h='100px'
@@ -26,6 +28,14 @@ const FramerMotion: VFC = () => {
           borderRadius: ['20%', '20%', '50%', '50%', '20%'],
         }}
         transition={{ duration: 2 }}
+      />
+      <MotionButton
+        m='24'
+        w='100px'
+        h='100px'
+        colorScheme='twitter'
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       />
     </Flex>
   );
