@@ -19,7 +19,7 @@ const FramerMotion: VFC = () => {
           h='100px'
           bgColor='green'
           animate={{ scale: 2 }}
-          transition={{ duration: 2 }}
+          transition={{ repeat: Infinity, repeatType: 'reverse', duration: 2 }}
         />
         <MotionBox
           m='24'
@@ -51,6 +51,14 @@ const FramerMotion: VFC = () => {
             </Text>
           </MotionBox>
         </MotionBox>
+        <MotionButton
+          m='24'
+          w='100px'
+          h='100px'
+          colorScheme='twitter'
+          animate={{ rotate: 180 }}
+          transition={{ repeat: Infinity, repeatType: 'mirror', duration: 2 }}
+        />
       </HStack>
     </Box>
   );
