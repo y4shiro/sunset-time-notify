@@ -1,65 +1,38 @@
-import { VFC } from 'react';
-import { Box, Flex, BoxProps, ButtonProps, Button, HStack, Text } from '@chakra-ui/react';
+import { useState, VFC } from 'react';
+import { Box, Flex, BoxProps, ButtonProps, Button, HStack, Text, VStack } from '@chakra-ui/react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import type { Variants } from 'framer-motion';
+import { v4 as uuidv4 } from 'uuid';
 
 const MotionBox = motion<Omit<BoxProps, 'transition' | 'style'>>(Box);
 const MotionButton = motion<Omit<ButtonProps, 'transition'>>(Button);
 
 const FramerMotion: VFC = () => {
-  const x = useMotionValue(0);
-  const background = useTransform(x, [-100, 0, 100], ['#ff008c', '#7700ff', 'rgb(230, 255, 0)']);
+  const [list, setList] = useState<{ id: string }[]>([]);
+
+  const addList = () => setList((s) => [...s, { id: uuidv4() }]);
+  const removeList = (id: string) => setList((s) => s.filter((item) => item.id !== id));
 
   return (
     <Box w='100%' minH='80vh' bgColor='gray.100'>
-      <HStack w='100%' gap='32'>
-        <MotionBox
-          m='24'
-          w='100px'
-          h='100px'
-          bgColor='green'
-          animate={{ scale: 2 }}
-          transition={{ repeat: Infinity, repeatType: 'reverse', duration: 2 }}
-        />
-        <MotionBox
-          m='24'
-          w='100px'
-          h='100px'
-          bgColor='green'
-          animate={{
-            scale: [1, 2, 2, 1, 1],
-            rotate: [0, 0, 270, 270, 0],
-            borderRadius: ['20%', '20%', '50%', '50%', '20%'],
-          }}
-          transition={{ duration: 2 }}
-        />
-        <MotionButton
-          m='24'
-          w='100px'
-          h='100px'
-          colorScheme='twitter'
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        />
-      </HStack>
-
-      <HStack>
-        <MotionBox m='24' w='100px' h='100px' bgColor='twitter' style={{ background }}>
-          <MotionBox drag='x' dragConstraints={{ left: 0, right: 0 }} style={{ x }}>
-            <Text color='gray.200' fontSize='16'>
-              Drag me
-            </Text>
-          </MotionBox>
-        </MotionBox>
-        <MotionButton
-          m='24'
-          w='100px'
-          h='100px'
-          colorScheme='twitter'
-          animate={{ rotate: 180 }}
-          transition={{ repeat: Infinity, repeatType: 'mirror', duration: 2 }}
-        />
-      </HStack>
+      <VStack m='2' gap='2'>
+        <Button colorScheme='green' onClick={() => addList()}>
+          リスト追加
+        </Button>
+        {list.map((item) => (
+          <HStack
+            w='480px'
+            p='2'
+            borderRadius='8'
+            bgColor='twitter.200'
+            justify='space-between'
+            key={item.id}
+          >
+            <Text>{item.id}</Text>
+            <Button onClick={() => removeList(item.id)}>Delete</Button>
+          </HStack>
+        ))}
+      </VStack>
     </Box>
   );
 };
