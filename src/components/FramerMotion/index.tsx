@@ -25,25 +25,20 @@ const FramerMotion: VFC = () => {
 
   return (
     <Box w='100%' minH='80vh' bgColor='gray.100'>
-      <Button colorScheme='green' onClick={() => addList()}>
-        リスト追加
-      </Button>
-      <AnimateSharedLayout>
-        <MotionVStack
-          layout
-          initial={{ borderRadius: 25 }}
-          w='540px'
-          m='2'
-          p='2'
-          bgColor={'red.200'}
-        >
-          <AnimatePresence>
-            {list.map((item) => (
-              <Item key={item.id} id={item.id} removeList={removeList} />
-            ))}
-          </AnimatePresence>
-        </MotionVStack>
-      </AnimateSharedLayout>
+      <VStack p='2' w='540px'>
+        <Button colorScheme='green' onClick={() => addList()}>
+          リスト追加
+        </Button>
+        <AnimateSharedLayout>
+          <MotionVStack p='4' bgColor={'red.200'} layout>
+            <AnimatePresence>
+              {list.map((item) => (
+                <Item key={item.id} id={item.id} removeList={removeList} />
+              ))}
+            </AnimatePresence>
+          </MotionVStack>
+        </AnimateSharedLayout>
+      </VStack>
     </Box>
   );
 };
