@@ -1,6 +1,6 @@
 import { useState, VFC } from 'react';
 import { Box, Button, HStack, StackProps, Text, VStack } from '@chakra-ui/react';
-import { AnimatePresence, AnimateSharedLayout, HTMLMotionProps, motion } from 'framer-motion';
+import { AnimatePresence, HTMLMotionProps, LayoutGroup, motion } from 'framer-motion';
 import { v4 as uuidv4 } from 'uuid';
 
 type Merge<P, T> = Omit<P, keyof T> & T;
@@ -20,7 +20,7 @@ const FramerMotion: VFC = () => {
         <Button colorScheme='green' onClick={() => addList()}>
           リスト追加
         </Button>
-        <AnimateSharedLayout>
+        <LayoutGroup>
           <MotionV w='100%' p='4' borderRadius='lg' bgColor={'red.200'} layout>
             <AnimatePresence initial={false}>
               {list.map((item) => (
@@ -28,7 +28,7 @@ const FramerMotion: VFC = () => {
               ))}
             </AnimatePresence>
           </MotionV>
-        </AnimateSharedLayout>
+        </LayoutGroup>
       </VStack>
     </Box>
   );
