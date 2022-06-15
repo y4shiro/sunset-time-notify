@@ -9,7 +9,7 @@ const MotionV: React.FC<MotionStackProps> = motion(VStack);
 const MotionH: React.FC<MotionStackProps> = motion(HStack);
 
 const FramerMotion: VFC = () => {
-  const [list, setList] = useState<{ id: string }[]>([]);
+  const [list, setList] = useState<{ id: string }[]>([{ id: '1' }, { id: '2' }]);
 
   const addList = () => setList((s) => [...s, { id: uuidv4() }]);
   const removeList = (id: string) => setList((s) => s.filter((item) => item.id !== id));
@@ -22,7 +22,7 @@ const FramerMotion: VFC = () => {
         </Button>
         <AnimateSharedLayout>
           <MotionV w='100%' p='4' borderRadius='lg' bgColor={'red.200'} layout>
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
               {list.map((item) => (
                 <Item key={item.id} id={item.id} removeList={removeList} />
               ))}
