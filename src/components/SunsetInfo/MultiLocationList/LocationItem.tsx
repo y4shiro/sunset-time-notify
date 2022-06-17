@@ -34,8 +34,10 @@ export const LocationItem = (props: locationType & { removeLocation: (id: string
   return (
     <MotionH
       w='full'
-      pl='2'
+      p='2'
       justify='space-between'
+      borderRadius='lg'
+      bgColor='white'
       layout
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.25 } }}

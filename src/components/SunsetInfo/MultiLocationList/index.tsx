@@ -15,26 +15,27 @@ const MultiLocationList: VFC = () => {
   const { locations, removeLocation, addLocation } = useLocationsList();
 
   return (
-    <LayoutGroup>
-      <MotionV
-        w='full'
-        p='2'
-        borderRadius='lg'
-        border='1px'
-        borderColor='gray.200'
-        shadow='md'
-        bgColor='white'
-        divider={<StackDivider />}
-        layout
-      >
-        <AnimatePresence initial={false}>
-          <AddLocationItem addLocation={addLocation} />
-          {locations.map((data) => (
-            <LocationItem key={data.id} removeLocation={removeLocation} {...data} />
-          ))}
-        </AnimatePresence>
-      </MotionV>
-    </LayoutGroup>
+    <VStack w='full'>
+      <LayoutGroup>
+        <AddLocationItem addLocation={addLocation} />
+        <MotionV
+          w='full'
+          p='2'
+          borderRadius='lg'
+          border='1px'
+          borderColor='gray.200'
+          shadow='md'
+          bgColor='gray'
+          layout
+        >
+          <AnimatePresence initial={false}>
+            {locations.map((data) => (
+              <LocationItem key={data.id} removeLocation={removeLocation} {...data} />
+            ))}
+          </AnimatePresence>
+        </MotionV>
+      </LayoutGroup>
+    </VStack>
   );
 };
 
