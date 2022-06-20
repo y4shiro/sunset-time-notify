@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 import dynamic from 'next/dynamic';
-import { HStack, StackDivider, StackProps, VStack } from '@chakra-ui/react';
+import { HStack, StackProps, VStack, theme } from '@chakra-ui/react';
 
 import { LocationItem } from './LocationItem';
 import { useLocationsList } from '../../../hooks/useLocationsList';
@@ -14,12 +14,13 @@ export const MotionH: React.FC<MotionStackProps> = motion(HStack);
 
 const MultiLocationList: VFC = () => {
   const { locations, removeLocation, addLocation } = useLocationsList();
+  const bgColor = theme.colors.gray[500];
 
   return (
     <VStack w='full' borderRadius='lg' spacing='0' shadow='md'>
       <LayoutGroup>
-        <AddLocationItem addLocation={addLocation} />
-        <MotionV w='full' p='2' borderBottomRadius='lg' bgColor='gray' layout>
+        <AddLocationItem addLocation={addLocation} bgColor={bgColor} />
+        <MotionV w='full' p='2' borderBottomRadius='lg' bgColor={bgColor} layout>
           <AnimatePresence initial={false}>
             {locations.map((data) => (
               <LocationItem key={data.id} removeLocation={removeLocation} {...data} />
