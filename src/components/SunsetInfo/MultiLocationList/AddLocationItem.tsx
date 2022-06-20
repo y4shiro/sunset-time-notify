@@ -3,7 +3,7 @@ import { MdAddLocationAlt } from 'react-icons/md';
 
 export const AddLocationItem = ({ addLocation }: { addLocation: () => void }) => {
   return (
-    <HStack w='full' px='2' justify='center'>
+    <HStack w='full' pt='2' borderTopRadius='lg' justify='center' bgColor='gray'>
       <Button
         bgColor='green'
         color='white'
