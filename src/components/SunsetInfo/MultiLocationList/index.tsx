@@ -1,4 +1,5 @@
 import { VFC } from 'react';
+import dynamic from 'next/dynamic';
 import { HStack, StackDivider, StackProps, VStack } from '@chakra-ui/react';
 
 import { LocationItem } from './LocationItem';
@@ -39,4 +40,6 @@ const MultiLocationList: VFC = () => {
   );
 };
 
-export default MultiLocationList;
+const DynamicMultiLocationList = dynamic({ loader: async () => MultiLocationList }, { ssr: false });
+
+export default DynamicMultiLocationList;

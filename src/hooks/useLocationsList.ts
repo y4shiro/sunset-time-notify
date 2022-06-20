@@ -6,7 +6,17 @@ import { useAsyncCurrentPosition } from './useAsyncCurrentPosition';
 import { useAsyncCurrentPlaceName } from './useAsyncCurrentPlaceName';
 
 export const useLocationsList = () => {
-  const [locations, setLocations] = useState<locationType[]>([]);
+  const loadLocation = () => {
+    try {
+      const item = window.localStorage.getItem('locations');
+      return item ? JSON.parse(item) : [];
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+
+  const [locations, setLocations] = useState<locationType[]>(loadLocation);
   const { getPositionOnce } = useAsyncCurrentPosition();
   const { getCurrentPlaceName } = useAsyncCurrentPlaceName();
 
@@ -32,12 +42,6 @@ export const useLocationsList = () => {
       return s.filter((list) => list.id !== id);
     });
   };
-
-  useEffect(() => {
-    const localData = localStorage.getItem('locations');
-    if (!localData) return;
-    setLocations(JSON.parse(localData));
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('locations', JSON.stringify(locations));
