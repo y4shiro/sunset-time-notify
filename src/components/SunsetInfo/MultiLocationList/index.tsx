@@ -14,7 +14,7 @@ export const MotionH: React.FC<MotionStackProps> = motion(HStack);
 
 const MultiLocationList: VFC = () => {
   const { locations, removeLocation, addLocation } = useLocationsList();
-  const bgColor = theme.colors.gray[500];
+  const bgColor = theme.colors.gray[400];
 
   return (
     <VStack w='full' borderRadius='lg' spacing='0' shadow='md'>

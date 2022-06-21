@@ -11,9 +11,9 @@ export const AddLocationItem = ({
   return (
     <HStack w='full' pt='2' borderTopRadius='lg' justify='center' bgColor={bgColor}>
       <Button
-        bgColor='green'
+        bgColor='green.600'
         color='white'
-        _hover={{ bg: 'green.500' }}
+        _hover={{ bg: 'green.700' }}
         gap='2'
         onClick={() => addLocation()}
       >
