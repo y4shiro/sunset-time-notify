@@ -1,13 +1,19 @@
 import { Button, HStack, Text } from '@chakra-ui/react';
 import { MdAddLocationAlt } from 'react-icons/md';
 
-export const AddLocationItem = ({ addLocation }: { addLocation: () => void }) => {
+export const AddLocationItem = ({
+  addLocation,
+  bgColor,
+}: {
+  addLocation: () => void;
+  bgColor: string;
+}) => {
   return (
-    <HStack w='full' px='2' justify='center'>
+    <HStack w='full' pt='2' borderTopRadius='lg' justify='center' bgColor={bgColor}>
       <Button
-        bgColor='green'
+        bgColor='green.600'
         color='white'
-        _hover={{ bg: 'green.500' }}
+        _hover={{ bg: 'green.700' }}
         gap='2'
         onClick={() => addLocation()}
       >
