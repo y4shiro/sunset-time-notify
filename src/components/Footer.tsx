@@ -1,6 +1,7 @@
 import { VFC } from 'react';
 import NextLink from 'next/link';
 import { Box, Center, Flex, Heading, HStack, Link, Text } from '@chakra-ui/react';
+import { FaGithub } from 'react-icons/fa';
 
 const Footer: VFC = () => {
   return (
@@ -18,7 +19,7 @@ const Footer: VFC = () => {
       </Heading>
 
       <Flex
-        gap='2'
+        gap={{ base: 0, md: 2 }}
         justify={{ base: 'center', md: 'space-between' }}
         direction={{ base: 'column-reverse', md: 'row' }}
       >
@@ -29,7 +30,12 @@ const Footer: VFC = () => {
         <Center>
           <HStack>
             <NextLink href='https://github.com/y4shiro/sunset-time-notify' passHref>
-              <Link>View this site on GitHub</Link>
+              <Link isExternal>
+                <HStack>
+                  <FaGithub />
+                  <Text>View this site on GitHub</Text>
+                </HStack>
+              </Link>
             </NextLink>
           </HStack>
         </Center>
