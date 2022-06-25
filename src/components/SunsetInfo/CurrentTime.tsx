@@ -1,5 +1,5 @@
 import React, { useEffect, useState, VFC } from 'react';
-import { HStack, Text } from '@chakra-ui/react';
+import { HStack, Skeleton, Text } from '@chakra-ui/react';
 import { FaClock } from 'react-icons/fa';
 import { format } from 'date-fns';
 
@@ -25,7 +25,9 @@ const CurrentTime: VFC = () => {
       bgColor='white'
     >
       <FaClock fontSize='24' />
-      <Text fontSize={{ base: 16, md: 20 }}>{currentTimeString}</Text>
+      <Skeleton isLoaded={!!currentTimeString}>
+        <Text fontSize={{ base: 16, md: 20 }}>{currentTimeString}</Text>
+      </Skeleton>
     </HStack>
   );
 };
