@@ -8,7 +8,7 @@ import { currentPlaceNameState } from '../stores/currentPlaceNameState';
 
 const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY || '';
 
-export const useReverseGeocoding = (): string => {
+export const useReverseGeocoding = (): { placeName: string; isFetching: boolean } => {
   const [isFetchEnabled, setIsFetchEnabled] = useState<boolean>(true);
   const [placeName, setPlaceName] = useRecoilState(currentPlaceNameState);
   const { latitude, longitude } = useCurrentPosition();
@@ -40,5 +40,5 @@ export const useReverseGeocoding = (): string => {
     else if (data) setPlaceName(data);
   }, [data, isFetching, isError]);
 
-  return placeName;
+  return { placeName, isFetching };
 };
