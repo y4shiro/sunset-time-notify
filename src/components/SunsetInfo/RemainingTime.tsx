@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { Text, HStack } from '@chakra-ui/react';
+import { Text, HStack, Skeleton } from '@chakra-ui/react';
 import { FiSunrise, FiSunset } from 'react-icons/fi';
 
 import { useRemainingTime } from '../../hooks/useRemainingTime';
@@ -19,9 +19,11 @@ const RemainingTime: VFC = () => {
       bgColor='white'
     >
       {isTime === 'beforeSunset' ? <FiSunset fontSize='24' /> : <FiSunrise fontSize='24' />}
-      <Text fontSize={{ base: 16, md: 20 }}>
-        {isTime === 'beforeSunset' ? '日の入' : '日の出'}まで {remainingTime}
-      </Text>
+      <Skeleton isLoaded={!!remainingTime}>
+        <Text fontSize={{ base: 16, md: 20 }}>
+          {isTime === 'beforeSunset' ? '日の入' : '日の出'}まで {remainingTime}
+        </Text>
+      </Skeleton>
     </HStack>
   );
 };
